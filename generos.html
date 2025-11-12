@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Géneros Musicales — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página de Géneros */
+        .generos-hero {
+            background: linear-gradient(135deg, #0d1117 0%, #1f2937 50%, #111827 100%);
+            padding: 120px var(--spacing-md) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .generos-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 175, 55, 0.03) 10px,
+                rgba(212, 175, 55, 0.03) 20px
+            );
+        }
+
+        .generos-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .generos-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-acento);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .generos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .genero-card {
+            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+            border-radius: 16px;
+            padding: var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            border: 2px solid var(--color-borde);
+            cursor: pointer;
+        }
+
+        .genero-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .genero-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--color-acento);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .genero-card:hover::before {
+            opacity: 1;
+        }
+
+        .genero-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+
+        .genero-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-acento);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .genero-description {
+            color: var(--color-texto-muted);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .genero-artists {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-md);
+        }
+
+        .genero-artist-tag {
+            padding: 4px 12px;
+            background-color: var(--color-secundario);
+            border: 1px solid var(--color-borde);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--color-texto);
+        }
+
+        .genero-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-borde);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-acento);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--color-texto-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="generos-hero">
+        <div class="generos-hero-content">
+            <h1>Géneros Musicales</h1>
+            <p style="font-size: 1.2rem; color: var(--color-texto-muted); max-width: 700px; margin: 0 auto;">
+                Explora la diversidad de géneros musicales del mundo. Desde los clásicos hasta los más modernos.
+            </p>
+        </div>
+    </section>
+
+    <!-- Grid de Géneros -->
+    <section class="section">
+        <div class="container">
+            <div class="generos-grid" id="generosGrid">
+                <!-- Géneros se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const generosMusicales = [
+            {
+                nombre: 'Salsa',
+                icono: '🎺',
+                descripcion: 'Género musical bailable que combina influencias cubanas, puertorriqueñas y otros ritmos latinoamericanos.',
+                artistas: ['Rubén Blades', 'Celia Cruz', 'Marc Anthony', 'Willie Colón'],
+                artistasCount: 150,
+                paisesCount: 25
+            },
+            {
+                nombre: 'Jazz',
+                icono: '🎷',
+                descripcion: 'Género musical que se originó en las comunidades afroamericanas de Nueva Orleans a finales del siglo XIX.',
+                artistas: ['Louis Armstrong', 'Miles Davis', 'John Coltrane', 'Ella Fitzgerald'],
+                artistasCount: 200,
+                paisesCount: 30
+            },
+            {
+                nombre: 'Rock',
+                icono: '🎸',
+                descripcion: 'Género musical que surgió en los años 50, caracterizado por guitarras eléctricas y ritmos fuertes.',
+                artistas: ['The Beatles', 'Led Zeppelin', 'Queen', 'The Rolling Stones'],
+                artistasCount: 500,
+                paisesCount: 50
+            },
+            {
+                nombre: 'Pop',
+                icono: '🎤',
+                descripcion: 'Género musical popular que abarca una amplia gama de estilos, caracterizado por melodías pegadizas.',
+                artistas: ['Michael Jackson', 'Madonna', 'Taylor Swift', 'Ariana Grande'],
+                artistasCount: 800,
+                paisesCount: 60
+            },
+            {
+                nombre: 'Electrónica',
+                icono: '🎹',
+                descripcion: 'Género musical creado principalmente con instrumentos electrónicos y tecnología de producción.',
+                artistas: ['Daft Punk', 'Deadmau5', 'Skrillex', 'Avicii'],
+                artistasCount: 300,
+                paisesCount: 40
+            },
+            {
+                nombre: 'Hip Hop',
+                icono: '🎧',
+                descripcion: 'Movimiento cultural y artístico que surgió en el Bronx, Nueva York, a principios de los años 70.',
+                artistas: ['Tupac', 'Eminem', 'Jay-Z', 'Kendrick Lamar'],
+                artistasCount: 400,
+                paisesCount: 45
+            },
+            {
+                nombre: 'Reggae',
+                icono: '🎵',
+                descripcion: 'Género musical jamaicano que se desarrolló a finales de los años 60, conocido por su ritmo característico.',
+                artistas: ['Bob Marley', 'Peter Tosh', 'Bunny Wailer', 'Jimmy Cliff'],
+                artistasCount: 120,
+                paisesCount: 20
+            },
+            {
+                nombre: 'Flamenco',
+                icono: '💃',
+                descripcion: 'Arte musical y dancístico originario de Andalucía, España, con influencias gitanas y árabes.',
+                artistas: ['Paco de Lucía', 'Camarón de la Isla', 'Rosalía', 'Enrique Morente'],
+                artistasCount: 80,
+                paisesCount: 15
+            },
+            {
+                nombre: 'K-Pop',
+                icono: '🌟',
+                descripcion: 'Género musical originario de Corea del Sur que combina pop, hip hop, R&B y música electrónica.',
+                artistas: ['BTS', 'BLACKPINK', 'EXO', 'TWICE'],
+                artistasCount: 250,
+                paisesCount: 10
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('generosGrid');
+            if (grid) {
+                grid.innerHTML = generosMusicales.map(genero => `
+                    <div class="genero-card">
+                        <span class="genero-icon">${genero.icono}</span>
+                        <h2 class="genero-name">${genero.nombre}</h2>
+                        <p class="genero-description">${genero.descripcion}</p>
+                        <div class="genero-artists">
+                            ${genero.artistas.map(artista => 
+                                `<span class="genero-artist-tag">${artista}</span>`
+                            ).join('')}
+                        </div>
+                        <div class="genero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">${genero.artistasCount}+</div>
+                                <div class="stat-label">Artistas</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${genero.paisesCount}+</div>
+                                <div class="stat-label">Países</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+</html>

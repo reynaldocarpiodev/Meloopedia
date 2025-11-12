@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación Musical — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página de Educación */
+        .educacion-hero {
+            background: linear-gradient(135deg, #1f2937 0%, #0d1117 50%, #111827 100%);
+            padding: 120px var(--spacing-md) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .educacion-hero::before {
+            content: '📚';
+            position: absolute;
+            font-size: 15rem;
+            color: rgba(212, 175, 55, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .educacion-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .educacion-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--color-acento), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .educacion-sections {
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .educacion-section {
+            margin-bottom: var(--spacing-xl);
+            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            border: 2px solid var(--color-borde);
+            transition: all var(--transition-normal);
+        }
+
+        .educacion-section:hover {
+            border-color: var(--color-acento);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .educacion-section-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-acento);
+        }
+
+        .educacion-icon-large {
+            font-size: 4rem;
+        }
+
+        .educacion-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-acento);
+        }
+
+        .educacion-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .educacion-card {
+            background-color: var(--color-secundario);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-borde);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+
+        .educacion-card:hover {
+            border-color: var(--color-acento);
+            transform: translateX(5px);
+        }
+
+        .educacion-card h4 {
+            color: var(--color-acento);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .educacion-card p {
+            color: var(--color-texto-muted);
+            line-height: 1.8;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--color-acento), var(--color-borde));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+            padding-left: var(--spacing-md);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--color-acento);
+            border: 3px solid var(--color-fondo);
+        }
+
+        .timeline-year {
+            color: var(--color-acento);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content {
+            color: var(--color-texto-muted);
+            margin-top: var(--spacing-xs);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="educacion-hero">
+        <div class="educacion-hero-content">
+            <h1>Educación Musical</h1>
+            <p style="font-size: 1.2rem; color: var(--color-texto-muted); max-width: 700px; margin: 0 auto;">
+                Aprende sobre la historia, evolución y cultura de la música mundial. Conviértete en un experto musical.
+            </p>
+        </div>
+    </section>
+
+    <!-- Secciones Educativas -->
+    <section class="educacion-sections">
+        <div class="container">
+            <!-- Historia de los Géneros -->
+            <div class="educacion-section">
+                <div class="educacion-section-header">
+                    <span class="educacion-icon-large">📜</span>
+                    <h2 class="educacion-section-title">Historia de los Géneros</h2>
+                </div>
+                <div class="educacion-content">
+                    <div class="educacion-card">
+                        <h4>Orígenes del Jazz</h4>
+                        <p>El jazz nació a finales del siglo XIX en Nueva Orleans, fusionando música africana, blues y ragtime. Se caracteriza por la improvisación y el swing.</p>
+                    </div>
+                    <div class="educacion-card">
+                        <h4>Evolución del Rock</h4>
+                        <p>El rock and roll surgió en los años 50 como fusión de rhythm and blues, country y gospel. Revolucionó la música popular y dio origen a múltiples subgéneros.</p>
+                    </div>
+                    <div class="educacion-card">
+                        <h4>El Pop Moderno</h4>
+                        <p>La música pop se desarrolló en los años 60, enfocándose en melodías pegadizas y producción comercial. Hoy domina las listas de éxitos mundiales.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instrumentos del Mundo -->
+            <div class="educacion-section">
+                <div class="educacion-section-header">
+                    <span class="educacion-icon-large">🎸</span>
+                    <h2 class="educacion-section-title">Instrumentos del Mundo</h2>
+                </div>
+                <div class="educacion-content">
+                    <div class="educacion-card">
+                        <h4>Instrumentos de Cuerda</h4>
+                        <p>Desde la guitarra española hasta el sitar indio, los instrumentos de cuerda han sido fundamentales en todas las culturas musicales del mundo.</p>
+                    </div>
+                    <div class="educacion-card">
+                        <h4>Instrumentos de Viento</h4>
+                        <p>La flauta, el saxofón, la trompeta y otros instrumentos de viento han evolucionado a lo largo de siglos, cada uno con su historia única.</p>
+                    </div>
+                    <div class="educacion-card">
+                        <h4>Percusión Global</h4>
+                        <p>Los tambores y percusiones varían enormemente entre culturas, desde los djembes africanos hasta las tablas indias.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evolución del Ritmo -->
+            <div class="educacion-section">
+                <div class="educacion-section-header">
+                    <span class="educacion-icon-large">🎼</span>
+                    <h2 class="educacion-section-title">Evolución del Ritmo</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1920s - 1940s</div>
+                        <div class="timeline-content">La era del swing y el big band. El jazz se populariza y se convierte en música de baile dominante.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1950s - 1960s</div>
+                        <div class="timeline-content">Nacimiento del rock and roll y la música pop. Los Beatles y otros grupos revolucionan la industria.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1970s - 1980s</div>
+                        <div class="timeline-content">Disco, punk, new wave y el surgimiento del hip hop. Diversificación masiva de estilos.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">1990s - 2000s</div>
+                        <div class="timeline-content">Grunge, techno, y la revolución digital. Internet cambia cómo se consume música.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010s - Presente</div>
+                        <div class="timeline-content">Streaming, K-pop global, y fusión de géneros. La música se vuelve más accesible y diversa que nunca.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

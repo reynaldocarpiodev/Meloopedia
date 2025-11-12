@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Musical Mundial — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página del Mapa */
+        .mapa-hero {
+            background: linear-gradient(135deg, #0d1117 0%, #1e3a5f 50%, #2d4a6f 100%);
+            padding: 120px var(--spacing-md) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mapa-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: waveAnimation 20s ease-in-out infinite;
+        }
+
+        .mapa-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mapa-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-acento);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .mapa-container-page {
+            padding: var(--spacing-xl) var(--spacing-md);
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .world-map-page {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 50%, #2d4a6f 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 3px solid var(--color-acento);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .world-map-page svg path {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .country-info-panel {
+            background-color: var(--color-primario);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+            border: 2px solid var(--color-borde);
+            min-height: 200px;
+        }
+
+        .country-info-panel h3 {
+            color: var(--color-acento);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .country-artists-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .country-artist-item {
+            padding: var(--spacing-sm);
+            background-color: var(--color-secundario);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: 1px solid var(--color-borde);
+        }
+
+        .country-artist-item:hover {
+            border-color: var(--color-acento);
+            transform: translateX(5px);
+        }
+
+        .map-controls {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .map-control-btn {
+            padding: var(--spacing-xs) var(--spacing-md);
+            background-color: var(--color-primario);
+            border: 2px solid var(--color-borde);
+            color: var(--color-texto);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-weight: 500;
+        }
+
+        .map-control-btn:hover,
+        .map-control-btn.active {
+            background-color: var(--color-acento);
+            border-color: var(--color-acento);
+            color: var(--color-fondo);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="mapa-hero">
+        <div class="mapa-hero-content">
+            <h1>Mapa Musical Mundial</h1>
+            <p style="font-size: 1.2rem; color: var(--color-texto-muted); max-width: 700px; margin: 0 auto;">
+                Explora la música del mundo de forma interactiva. Haz clic en cualquier país para descubrir sus artistas.
+            </p>
+        </div>
+    </section>
+
+    <!-- Controles del Mapa -->
+    <section class="mapa-container-page">
+        <div class="map-controls">
+            <button class="map-control-btn active" data-view="all">Todos los Países</button>
+            <button class="map-control-btn" data-view="popular">Más Populares</button>
+            <button class="map-control-btn" data-view="emergentes">Emergentes</button>
+        </div>
+
+        <!-- Mapa Mundial -->
+        <div class="world-map-page" id="worldMapPage">
+            <!-- Mapa mundial como imagen simple -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg" 
+                 alt="Mapa Mundial" 
+                 class="world-map-img"
+                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: brightness(0.7) contrast(1.2); z-index: 1;">
+            
+            <!-- Marcadores de países - Posiciones ajustadas al nuevo mapa -->
+            <div class="country-marker" data-country="panama" style="left: 30%; top: 46%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Panamá</div>
+            </div>
+            <div class="country-marker" data-country="mexico" style="left: 25%; top: 35%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">México</div>
+            </div>
+            <div class="country-marker" data-country="usa" style="left: 22%; top: 25%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Estados Unidos</div>
+            </div>
+            <div class="country-marker" data-country="colombia" style="left: 32%; top: 50%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Colombia</div>
+            </div>
+            <div class="country-marker" data-country="brasil" style="left: 38%; top: 60%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Brasil</div>
+            </div>
+            <div class="country-marker" data-country="argentina" style="left: 35%; top: 75%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Argentina</div>
+            </div>
+            <div class="country-marker" data-country="cuba" style="left: 28%; top: 40%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Cuba</div>
+            </div>
+            <div class="country-marker" data-country="espana" style="left: 48%; top: 30%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">España</div>
+            </div>
+            <div class="country-marker" data-country="francia" style="left: 49%; top: 26%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Francia</div>
+            </div>
+            <div class="country-marker" data-country="italia" style="left: 52%; top: 30%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Italia</div>
+            </div>
+            <div class="country-marker" data-country="reino_unido" style="left: 47%; top: 22%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Reino Unido</div>
+            </div>
+            <div class="country-marker" data-country="japon" style="left: 90%; top: 30%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Japón</div>
+            </div>
+            <div class="country-marker" data-country="corea_sur" style="left: 87%; top: 28%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Corea del Sur</div>
+            </div>
+            <div class="country-marker" data-country="nigeria" style="left: 52%; top: 45%;">
+                <span class="marker-dot"></span>
+                <div class="country-tooltip">Nigeria</div>
+            </div>
+        </div>
+
+        <!-- Panel de Información -->
+        <div class="country-info-panel" id="countryInfoPanel">
+            <h3>Selecciona un país en el mapa</h3>
+            <p style="color: var(--color-texto-muted);">Haz clic en cualquier marcador para ver información detallada del país.</p>
+        </div>
+        
+        <!-- Modal de información del país -->
+        <div class="modal" id="countryModal">
+            <div class="modal-content" style="max-width: 800px;">
+                <span class="modal-close" id="countryModalClose">&times;</span>
+                <div class="modal-body" id="countryModalBody"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            inicializarMapaPage();
+        });
+
+        function inicializarMapaPage() {
+            const markers = document.querySelectorAll('.country-marker');
+            const infoPanel = document.getElementById('countryInfoPanel');
+
+            markers.forEach(marker => {
+                const country = marker.getAttribute('data-country');
+                
+                marker.addEventListener('click', () => {
+                    mostrarInfoPaisCompleta(country);
+                });
+
+                marker.addEventListener('mouseenter', () => {
+                    const tooltip = marker.querySelector('.country-tooltip');
+                    if (tooltip) {
+                        tooltip.style.opacity = '1';
+                    }
+                });
+
+                marker.addEventListener('mouseleave', () => {
+                    const tooltip = marker.querySelector('.country-tooltip');
+                    if (tooltip) {
+                        tooltip.style.opacity = '0';
+                    }
+                });
+            });
+
+            // Controles del mapa
+            const controlBtns = document.querySelectorAll('.map-control-btn');
+            controlBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    controlBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            // Cerrar modal de país
+            const countryModal = document.getElementById('countryModal');
+            const countryModalClose = document.getElementById('countryModalClose');
+            
+            if (countryModalClose) {
+                countryModalClose.addEventListener('click', () => {
+                    if (countryModal) {
+                        countryModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            if (countryModal) {
+                countryModal.addEventListener('click', (e) => {
+                    if (e.target === countryModal) {
+                        countryModal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        }
+
+        function mostrarInfoPaisCompleta(codigoPais) {
+            const info = paisesInfo[codigoPais];
+            const artistasPais = artistas[codigoPais] || [];
+            const modal = document.getElementById('countryModal');
+            const modalBody = document.getElementById('countryModalBody');
+
+            if (!info || !modal || !modalBody) return;
+
+            modalBody.innerHTML = `
+                <div style="text-align: center; margin-bottom: var(--spacing-md);">
+                    <div style="font-size: 4rem; margin-bottom: var(--spacing-sm);">${info.bandera}</div>
+                    <h2 style="font-size: 2.5rem; color: var(--color-acento); margin-bottom: var(--spacing-sm);">
+                        ${info.nombre}
+                    </h2>
+                </div>
+                
+                <div class="modal-section">
+                    <h3 style="color: var(--color-acento); margin-bottom: var(--spacing-sm);">Descripción</h3>
+                    <p style="color: var(--color-texto-muted); line-height: 1.8; margin-bottom: var(--spacing-md);">
+                        ${info.descripcion}
+                    </p>
+                </div>
+
+                <div class="modal-section">
+                    <h3 style="color: var(--color-acento); margin-bottom: var(--spacing-sm);">Géneros Populares</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-xs); margin-bottom: var(--spacing-md);">
+                        ${info.generosPopulares.map(genero => 
+                            `<span class="award-badge" style="background-color: var(--color-acento);">${genero}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 style="color: var(--color-acento); margin-bottom: var(--spacing-sm);">Géneros Tradicionales</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-xs); margin-bottom: var(--spacing-md);">
+                        ${info.generosTradicionales.map(genero => 
+                            `<span class="award-badge" style="background-color: var(--color-borde); color: var(--color-texto);">${genero}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 style="color: var(--color-acento); margin-bottom: var(--spacing-sm);">Artistas Más Populares</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--spacing-sm);">
+                        ${artistasPais.map(artista => `
+                            <div class="country-artist-item" onclick="abrirModalArtista(${artista.id}); if(document.getElementById('countryModal')) document.getElementById('countryModal').classList.remove('active');">
+                                <strong>${artista.nombre}</strong><br>
+                                <small style="color: var(--color-texto-muted);">${artista.genero}</small>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    </script>
+</body>
+</html>

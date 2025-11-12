@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meloopedia — La Enciclopedia de la Música Mundial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="sound-waves"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Meloopedia</h1>
+            <p class="hero-subtitle">La Enciclopedia de la Música Mundial</p>
+            <p class="hero-description">Descubre, escucha y aprende sobre la música del mundo.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('artistas')">Explorar Artistas</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('mapa')">Inicia tu Viaje Musical</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>↓</span>
+        </div>
+    </section>
+
+    <!-- Sección Artistas Destacados -->
+    <section class="section" id="artistas">
+        <div class="container">
+            <h2 class="section-title">Artistas Destacados</h2>
+            <p class="section-subtitle">Explora los artistas más influyentes de diferentes países</p>
+            <div class="artists-grid" id="artistsGrid">
+                <!-- Artistas se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Mapa Musical -->
+    <section class="section section-dark" id="mapa">
+        <div class="container">
+            <h2 class="section-title">Mapa Musical Mundial</h2>
+            <p class="section-subtitle">Haz clic en un país para descubrir sus artistas</p>
+            <div class="map-container">
+                <div class="world-map" id="worldMap">
+                    <!-- Mapa mundial como imagen simple -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg" 
+                         alt="Mapa Mundial" 
+                         class="world-map-img"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: brightness(0.7) contrast(1.2); z-index: 1;">
+                    
+                    <!-- Marcadores de países - Posiciones ajustadas al nuevo mapa -->
+                    <div class="country-marker" data-country="panama" style="left: 30%; top: 46%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Panamá</div>
+                    </div>
+                    <div class="country-marker" data-country="mexico" style="left: 25%; top: 35%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">México</div>
+                    </div>
+                    <div class="country-marker" data-country="usa" style="left: 22%; top: 25%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Estados Unidos</div>
+                    </div>
+                    <div class="country-marker" data-country="colombia" style="left: 32%; top: 50%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Colombia</div>
+                    </div>
+                    <div class="country-marker" data-country="brasil" style="left: 38%; top: 60%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Brasil</div>
+                    </div>
+                    <div class="country-marker" data-country="argentina" style="left: 35%; top: 75%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Argentina</div>
+                    </div>
+                    <div class="country-marker" data-country="cuba" style="left: 28%; top: 40%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Cuba</div>
+                    </div>
+                    <div class="country-marker" data-country="espana" style="left: 48%; top: 30%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">España</div>
+                    </div>
+                    <div class="country-marker" data-country="francia" style="left: 49%; top: 26%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Francia</div>
+                    </div>
+                    <div class="country-marker" data-country="italia" style="left: 52%; top: 30%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Italia</div>
+                    </div>
+                    <div class="country-marker" data-country="reino_unido" style="left: 47%; top: 22%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Reino Unido</div>
+                    </div>
+                    <div class="country-marker" data-country="japon" style="left: 90%; top: 30%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Japón</div>
+                    </div>
+                    <div class="country-marker" data-country="corea_sur" style="left: 87%; top: 28%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Corea del Sur</div>
+                    </div>
+                    <div class="country-marker" data-country="nigeria" style="left: 52%; top: 45%;">
+                        <span class="marker-dot"></span>
+                        <div class="country-tooltip">Nigeria</div>
+                    </div>
+                </div>
+                <div class="map-info" id="mapInfo">
+                    <p>Haz clic en cualquier marcador para ver información detallada del país</p>
+                </div>
+            </div>
+            
+            <!-- Modal de información del país -->
+            <div class="modal" id="countryModal">
+                <div class="modal-content" style="max-width: 800px;">
+                    <span class="modal-close" id="countryModalClose">&times;</span>
+                    <div class="modal-body" id="countryModalBody"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Trivia Musical -->
+    <section class="section" id="trivia">
+        <div class="container">
+            <h2 class="section-title">Trivia Musical</h2>
+            <p class="section-subtitle">Pon a prueba tus conocimientos musicales</p>
+            <div class="trivia-container">
+                <div class="trivia-card" id="triviaCard">
+                    <div class="trivia-header">
+                        <span class="trivia-number" id="triviaNumber">Pregunta 1</span>
+                        <span class="trivia-score">Puntos: <span id="triviaScore">0</span></span>
+                    </div>
+                    <div class="trivia-question" id="triviaQuestion"></div>
+                    <div class="trivia-options" id="triviaOptions"></div>
+                    <div class="trivia-feedback" id="triviaFeedback"></div>
+                    <button class="btn btn-primary trivia-next" id="triviaNext" style="display: none;">Siguiente Pregunta</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Artistas Emergentes -->
+    <section class="section section-dark" id="emergentes">
+        <div class="container">
+            <h2 class="section-title">Artistas Emergentes</h2>
+            <p class="section-subtitle">Descubre y apoya a los nuevos talentos del mundo</p>
+            <div class="emergentes-carousel" id="emergentesCarousel">
+                <!-- Artistas emergentes se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Educación Musical -->
+    <section class="section" id="educacion">
+        <div class="container">
+            <h2 class="section-title">Educación Musical</h2>
+            <p class="section-subtitle">Aprende sobre la historia y evolución de la música</p>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">📜</div>
+                    <h3>Historia de los Géneros</h3>
+                    <p>Explora la evolución de los géneros musicales desde sus orígenes hasta la actualidad.</p>
+                    <button class="btn btn-outline">Leer más</button>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">🎸</div>
+                    <h3>Instrumentos del Mundo</h3>
+                    <p>Descubre instrumentos tradicionales y modernos de diferentes culturas.</p>
+                    <button class="btn btn-outline">Leer más</button>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">🎼</div>
+                    <h3>Evolución del Ritmo</h3>
+                    <p>Aprende sobre los ritmos que han definido épocas y movimientos musicales.</p>
+                    <button class="btn btn-outline">Leer más</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Conexiones Musicales -->
+    <section class="section section-dark" id="conexiones">
+        <div class="container">
+            <h2 class="section-title">Conexiones Musicales</h2>
+            <p class="section-subtitle">Explora las influencias y relaciones entre artistas</p>
+            <div class="connections-placeholder">
+                <p>Visualización interactiva de influencias musicales (próximamente)</p>
+                <div class="connection-graph">
+                    <div class="connection-node">Artista A</div>
+                    <div class="connection-line"></div>
+                    <div class="connection-node">Artista B</div>
+                    <div class="connection-line"></div>
+                    <div class="connection-node">Artista C</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Artista -->
+    <div class="modal" id="artistModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Contenido del modal se carga dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Reproductor de Audio Global -->
+    <div class="audio-player" id="audioPlayer">
+        <div class="player-info">
+            <span class="player-icon">🎵</span>
+            <div class="player-details">
+                <span class="player-title" id="playerTitle">Selecciona un artista para escuchar</span>
+                <span class="player-artist" id="playerArtist"></span>
+            </div>
+        </div>
+        <div class="player-controls">
+            <button class="player-btn" id="playerPrev">⏮</button>
+            <button class="player-btn player-play" id="playerPlay">▶</button>
+            <button class="player-btn" id="playerNext">⏭</button>
+        </div>
+        <div class="player-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página de Búsqueda */
+        .buscar-hero {
+            background: linear-gradient(135deg, #0d1117 0%, #1f2937 50%, #111827 100%);
+            padding: 120px var(--spacing-md) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .buscar-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .buscar-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-acento);
+        }
+
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 1.2rem;
+            background-color: var(--color-primario);
+            border: 3px solid var(--color-borde);
+            border-radius: 50px;
+            color: var(--color-texto);
+            font-family: var(--font-primary);
+            transition: all var(--transition-normal);
+            padding-right: 60px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--color-acento);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--color-acento);
+            pointer-events: none;
+        }
+
+        .search-filters {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: var(--spacing-xs) var(--spacing-md);
+            background-color: var(--color-primario);
+            border: 2px solid var(--color-borde);
+            border-radius: 25px;
+            color: var(--color-texto);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-weight: 500;
+        }
+
+        .filter-chip:hover,
+        .filter-chip.active {
+            background-color: var(--color-acento);
+            border-color: var(--color-acento);
+            color: var(--color-fondo);
+        }
+
+        .results-section {
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .results-header {
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .results-count {
+            color: var(--color-texto-muted);
+            font-size: 1.1rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--color-texto-muted);
+        }
+
+        .no-results-icon {
+            font-size: 5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .search-suggestions {
+            background-color: var(--color-primario);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            border: 2px solid var(--color-borde);
+        }
+
+        .suggestions-title {
+            color: var(--color-acento);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .suggestions-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .suggestion-tag {
+            padding: var(--spacing-xs) var(--spacing-md);
+            background-color: var(--color-secundario);
+            border: 1px solid var(--color-borde);
+            border-radius: 20px;
+            color: var(--color-texto);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .suggestion-tag:hover {
+            border-color: var(--color-acento);
+            color: var(--color-acento);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="buscar-hero">
+        <div class="buscar-hero-content">
+            <h1>Buscar en Meloopedia</h1>
+            <div class="search-container">
+                <input type="text" 
+                       class="search-box" 
+                       id="searchInput" 
+                       placeholder="Busca artistas, géneros, países..." 
+                       autocomplete="off">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="search-filters">
+                <div class="filter-chip active" data-filter="all">Todo</div>
+                <div class="filter-chip" data-filter="artistas">Artistas</div>
+                <div class="filter-chip" data-filter="generos">Géneros</div>
+                <div class="filter-chip" data-filter="paises">Países</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="section-title" id="resultsTitle">Resultados de Búsqueda</h2>
+                <p class="results-count" id="resultsCount">Escribe algo para buscar</p>
+            </div>
+            <div class="results-grid" id="resultsGrid">
+                <!-- Resultados se mostrarán aquí -->
+            </div>
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No se encontraron resultados</h3>
+                <p>Intenta con otros términos de búsqueda</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sugerencias -->
+    <section class="section">
+        <div class="container">
+            <div class="search-suggestions">
+                <h3 class="suggestions-title">Búsquedas Populares</h3>
+                <div class="suggestions-list">
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Rubén Blades')">Rubén Blades</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Jazz')">Jazz</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Panamá')">Panamá</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Rock')">Rock</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Bob Dylan')">Bob Dylan</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('México')">México</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Pop')">Pop</span>
+                    <span class="suggestion-tag" onclick="buscarSugerencia('Daft Punk')">Daft Punk</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Artista -->
+    <div class="modal" id="artistModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let filtroActual = 'all';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const filterChips = document.querySelectorAll('.filter-chip');
+
+            // Búsqueda en tiempo real
+            searchInput.addEventListener('input', (e) => {
+                buscar(e.target.value);
+            });
+
+            // Filtros
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    filtroActual = chip.getAttribute('data-filter');
+                    buscar(searchInput.value);
+                });
+            });
+        });
+
+        function buscar(termino) {
+            const terminoLower = termino.toLowerCase().trim();
+            const resultsGrid = document.getElementById('resultsGrid');
+            const noResults = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+            const resultsTitle = document.getElementById('resultsTitle');
+
+            if (!terminoLower) {
+                resultsGrid.innerHTML = '';
+                noResults.style.display = 'none';
+                resultsCount.textContent = 'Escribe algo para buscar';
+                resultsTitle.textContent = 'Resultados de Búsqueda';
+                return;
+            }
+
+            let resultados = [];
+
+            // Buscar en artistas
+            if (filtroActual === 'all' || filtroActual === 'artistas') {
+                for (const pais in artistas) {
+                    artistas[pais].forEach(artista => {
+                        if (artista.nombre.toLowerCase().includes(terminoLower) ||
+                            artista.pais.toLowerCase().includes(terminoLower) ||
+                            artista.genero.toLowerCase().includes(terminoLower)) {
+                            resultados.push({ tipo: 'artista', data: artista });
+                        }
+                    });
+                }
+            }
+
+            // Buscar en géneros (simulado)
+            if (filtroActual === 'all' || filtroActual === 'generos') {
+                const generos = ['Salsa', 'Jazz', 'Rock', 'Pop', 'Electrónica', 'Hip Hop', 'Reggae', 'Flamenco', 'K-Pop'];
+                generos.forEach(genero => {
+                    if (genero.toLowerCase().includes(terminoLower)) {
+                        resultados.push({ tipo: 'genero', data: { nombre: genero } });
+                    }
+                });
+            }
+
+            // Mostrar resultados
+            if (resultados.length > 0) {
+                noResults.style.display = 'none';
+                resultsTitle.textContent = `Resultados para "${termino}"`;
+                resultsCount.textContent = `${resultados.length} resultado${resultados.length !== 1 ? 's' : ''} encontrado${resultados.length !== 1 ? 's' : ''}`;
+                
+                resultsGrid.innerHTML = resultados.map(resultado => {
+                    if (resultado.tipo === 'artista') {
+                        const artista = resultado.data;
+                        return `
+                            <div class="artist-card" onclick="abrirModalArtista(${artista.id})">
+                                <div class="artist-image">${artista.bandera}</div>
+                                <span class="artist-flag">${artista.bandera}</span>
+                                <div class="artist-info">
+                                    <h3 class="artist-name">${artista.nombre}</h3>
+                                    <p class="artist-country">${artista.pais}</p>
+                                    <span class="artist-genre">${artista.genero}</span>
+                                </div>
+                                <div class="artist-listen">▶</div>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="education-card">
+                                <div class="education-icon">🎵</div>
+                                <h3>${resultado.data.nombre}</h3>
+                                <p>Género musical</p>
+                                <button class="btn btn-outline" onclick="window.location.href='generos.html'">Ver más</button>
+                            </div>
+                        `;
+                    }
+                }).join('');
+            } else {
+                resultsGrid.innerHTML = '';
+                noResults.style.display = 'block';
+                resultsTitle.textContent = `Resultados para "${termino}"`;
+                resultsCount.textContent = '0 resultados encontrados';
+            }
+        }
+
+        function buscarSugerencia(termino) {
+            document.getElementById('searchInput').value = termino;
+            buscar(termino);
+            document.getElementById('searchInput').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.buscarSugerencia = buscarSugerencia;
+    </script>
+</body>
+</html>

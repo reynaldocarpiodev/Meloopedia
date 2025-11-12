@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Musical — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página de Trivia */
+        .trivia-hero {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #0d1117 100%);
+            padding: 120px var(--spacing-md) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trivia-hero::before {
+            content: '?';
+            position: absolute;
+            font-size: 20rem;
+            color: rgba(212, 175, 55, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+        }
+
+        .trivia-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .trivia-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-acento);
+        }
+
+        .trivia-container-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .trivia-card-page {
+            background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--color-borde);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trivia-card-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .trivia-header-page {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--color-acento);
+            position: relative;
+            z-index: 1;
+        }
+
+        .trivia-progress {
+            width: 100%;
+            height: 8px;
+            background-color: var(--color-borde);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trivia-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-acento), #f4d03f);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .trivia-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .category-btn {
+            padding: var(--spacing-md);
+            background-color: var(--color-primario);
+            border: 2px solid var(--color-borde);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .category-btn:hover {
+            border-color: var(--color-acento);
+            background-color: var(--color-hover);
+            transform: translateY(-3px);
+        }
+
+        .category-btn.active {
+            border-color: var(--color-acento);
+            background: linear-gradient(135deg, var(--color-acento), #f4d03f);
+            color: var(--color-fondo);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="trivia-hero">
+        <div class="trivia-hero-content">
+            <h1>Trivia Musical</h1>
+            <p style="font-size: 1.2rem; color: var(--color-texto-muted); max-width: 700px; margin: 0 auto;">
+                Pon a prueba tus conocimientos musicales. Elige una categoría y demuestra cuánto sabes sobre música.
+            </p>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Elige una Categoría</h2>
+            <div class="trivia-categories">
+                <div class="category-btn" data-category="general">Música General</div>
+                <div class="category-btn" data-category="paises">Por Países</div>
+                <div class="category-btn" data-category="generos">Por Géneros</div>
+                <div class="category-btn" data-category="historia">Historia Musical</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor de Trivia -->
+    <section class="trivia-container-page">
+        <div class="trivia-card-page" id="triviaCardPage">
+            <div class="trivia-progress">
+                <div class="trivia-progress-fill" id="triviaProgressFill" style="width: 0%"></div>
+            </div>
+            <div class="trivia-header-page">
+                <span class="trivia-number" id="triviaNumberPage">Selecciona una categoría</span>
+                <span class="trivia-score">Puntos: <span id="triviaScorePage">0</span></span>
+            </div>
+            <div class="trivia-question" id="triviaQuestionPage" style="font-size: 1.5rem; margin-bottom: var(--spacing-lg); min-height: 80px; display: flex; align-items: center; justify-content: center; color: var(--color-texto-muted);">
+                Elige una categoría arriba para comenzar
+            </div>
+            <div class="trivia-options" id="triviaOptionsPage"></div>
+            <div class="trivia-feedback" id="triviaFeedbackPage"></div>
+            <button class="btn btn-primary trivia-next" id="triviaNextPage" style="display: none; width: 100%; margin-top: var(--spacing-md);">Siguiente Pregunta</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let preguntaActualPage = 0;
+        let puntuacionTriviaPage = 0;
+        let preguntaRespondidaPage = false;
+        let preguntasActuales = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            inicializarCategorias();
+        });
+
+        function inicializarCategorias() {
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const categoria = btn.getAttribute('data-category');
+                    iniciarTrivia(categoria);
+                });
+            });
+        }
+
+        function iniciarTrivia(categoria) {
+            preguntaActualPage = 0;
+            puntuacionTriviaPage = 0;
+            preguntaRespondidaPage = false;
+            preguntasActuales = [...preguntasTrivia];
+            mostrarPreguntaPage();
+        }
+
+        function mostrarPreguntaPage() {
+            if (preguntaActualPage >= preguntasActuales.length) {
+                mostrarResultadoFinalPage();
+                return;
+            }
+
+            const pregunta = preguntasActuales[preguntaActualPage];
+            const questionEl = document.getElementById('triviaQuestionPage');
+            const optionsEl = document.getElementById('triviaOptionsPage');
+            const feedbackEl = document.getElementById('triviaFeedbackPage');
+            const nextBtn = document.getElementById('triviaNextPage');
+            const numberEl = document.getElementById('triviaNumberPage');
+            const scoreEl = document.getElementById('triviaScorePage');
+            const progressEl = document.getElementById('triviaProgressFill');
+
+            preguntaRespondidaPage = false;
+            const progreso = ((preguntaActualPage + 1) / preguntasActuales.length) * 100;
+            progressEl.style.width = progreso + '%';
+            
+            numberEl.textContent = `Pregunta ${preguntaActualPage + 1} de ${preguntasActuales.length}`;
+            scoreEl.textContent = puntuacionTriviaPage;
+            questionEl.textContent = pregunta.pregunta;
+            questionEl.style.color = 'var(--color-texto)';
+
+            optionsEl.innerHTML = pregunta.opciones.map((opcion, index) => `
+                <div class="trivia-option" onclick="seleccionarRespuestaPage(${index})">
+                    ${opcion}
+                </div>
+            `).join('');
+
+            feedbackEl.textContent = '';
+            feedbackEl.className = 'trivia-feedback';
+            nextBtn.style.display = 'none';
+        }
+
+        function seleccionarRespuestaPage(indice) {
+            if (preguntaRespondidaPage) return;
+
+            const pregunta = preguntasActuales[preguntaActualPage];
+            const options = document.querySelectorAll('.trivia-option');
+            const feedbackEl = document.getElementById('triviaFeedbackPage');
+            const nextBtn = document.getElementById('triviaNextPage');
+
+            preguntaRespondidaPage = true;
+            options.forEach(opt => opt.classList.add('disabled'));
+
+            if (indice === pregunta.correcta) {
+                options[indice].classList.add('correct');
+                feedbackEl.textContent = '¡Correcto! 🎉';
+                feedbackEl.classList.add('correct');
+                puntuacionTriviaPage++;
+                document.getElementById('triviaScorePage').textContent = puntuacionTriviaPage;
+            } else {
+                options[indice].classList.add('incorrect');
+                options[pregunta.correcta].classList.add('correct');
+                feedbackEl.textContent = `Incorrecto. La respuesta correcta es: ${pregunta.opciones[pregunta.correcta]}`;
+                feedbackEl.classList.add('incorrect');
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function siguientePreguntaPage() {
+            preguntaActualPage++;
+            mostrarPreguntaPage();
+        }
+
+        function mostrarResultadoFinalPage() {
+            const questionEl = document.getElementById('triviaQuestionPage');
+            const optionsEl = document.getElementById('triviaOptionsPage');
+            const feedbackEl = document.getElementById('triviaFeedbackPage');
+            const nextBtn = document.getElementById('triviaNextPage');
+            const numberEl = document.getElementById('triviaNumberPage');
+            const progressEl = document.getElementById('triviaProgressFill');
+
+            const porcentaje = Math.round((puntuacionTriviaPage / preguntasActuales.length) * 100);
+            let mensaje = '';
+
+            if (porcentaje === 100) {
+                mensaje = '¡Perfecto! Eres un experto musical 🏆';
+            } else if (porcentaje >= 80) {
+                mensaje = '¡Excelente! Tienes muy buen conocimiento musical 🌟';
+            } else if (porcentaje >= 60) {
+                mensaje = 'Buen trabajo, pero puedes mejorar 💪';
+            } else {
+                mensaje = 'Sigue aprendiendo sobre música 🎵';
+            }
+
+            progressEl.style.width = '100%';
+            numberEl.textContent = 'Resultado Final';
+            questionEl.textContent = `Obtuviste ${puntuacionTriviaPage} de ${preguntasActuales.length} puntos (${porcentaje}%)`;
+            optionsEl.innerHTML = '';
+            feedbackEl.textContent = mensaje;
+            feedbackEl.className = 'trivia-feedback correct';
+            nextBtn.textContent = 'Jugar Otra Vez';
+            nextBtn.onclick = () => {
+                preguntaActualPage = 0;
+                puntuacionTriviaPage = 0;
+                nextBtn.textContent = 'Siguiente Pregunta';
+                nextBtn.onclick = siguientePreguntaPage;
+                mostrarPreguntaPage();
+            };
+            nextBtn.style.display = 'block';
+        }
+
+        window.seleccionarRespuestaPage = seleccionarRespuestaPage;
+        window.siguientePreguntaPage = siguientePreguntaPage;
+    </script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistas por País — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para la página de Artistas */
+        .artistas-hero {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 50%, #0d1117 100%);
+            padding: 120px var(--spacing-md) var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .artistas-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: waveAnimation 20s ease-in-out infinite;
+        }
+
+        .artistas-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .artistas-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(135deg, var(--color-acento), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .artistas-hero p {
+            font-size: 1.2rem;
+            color: var(--color-texto-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .filters-section {
+            background-color: var(--color-primario);
+            padding: var(--spacing-md);
+            border-bottom: 2px solid var(--color-borde);
+        }
+
+        .filters-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: var(--spacing-xs) var(--spacing-md);
+            background-color: var(--color-secundario);
+            border: 2px solid var(--color-borde);
+            color: var(--color-texto);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--color-acento);
+            border-color: var(--color-acento);
+            color: var(--color-fondo);
+            transform: translateY(-2px);
+        }
+
+        .countries-section {
+            padding: var(--spacing-xl) var(--spacing-md);
+        }
+
+        .country-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .country-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--color-acento);
+        }
+
+        .country-flag {
+            font-size: 3rem;
+        }
+
+        .country-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-acento);
+        }
+
+        .artists-category {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-texto);
+            margin-bottom: var(--spacing-md);
+            padding-left: var(--spacing-sm);
+            border-left: 4px solid var(--color-acento);
+        }
+
+        .artists-grid-page {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="artistas-hero">
+        <div class="artistas-hero-content">
+            <h1>Artistas por País</h1>
+            <p>Explora los artistas más influyentes y emergentes de cada país del mundo. Descubre la riqueza musical de diferentes culturas.</p>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="panama">Panamá</button>
+            <button class="filter-btn" data-filter="mexico">México</button>
+            <button class="filter-btn" data-filter="usa">Estados Unidos</button>
+            <button class="filter-btn" data-filter="japon">Japón</button>
+            <button class="filter-btn" data-filter="francia">Francia</button>
+        </div>
+    </section>
+
+    <!-- Sección de Países -->
+    <section class="countries-section">
+        <div class="container">
+            <!-- Panamá -->
+            <div class="country-section" data-country="panama">
+                <div class="country-header">
+                    <span class="country-flag">🇵🇦</span>
+                    <h2 class="country-title">Panamá</h2>
+                </div>
+                
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Populares</h3>
+                    <div class="artists-grid-page" id="panama-populares">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Emergentes</h3>
+                    <div class="artists-grid-page" id="panama-emergentes">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- México -->
+            <div class="country-section" data-country="mexico">
+                <div class="country-header">
+                    <span class="country-flag">🇲🇽</span>
+                    <h2 class="country-title">México</h2>
+                </div>
+                
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Populares</h3>
+                    <div class="artists-grid-page" id="mexico-populares">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Emergentes</h3>
+                    <div class="artists-grid-page" id="mexico-emergentes">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estados Unidos -->
+            <div class="country-section" data-country="usa">
+                <div class="country-header">
+                    <span class="country-flag">🇺🇸</span>
+                    <h2 class="country-title">Estados Unidos</h2>
+                </div>
+                
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Populares</h3>
+                    <div class="artists-grid-page" id="usa-populares">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Emergentes</h3>
+                    <div class="artists-grid-page" id="usa-emergentes">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Japón -->
+            <div class="country-section" data-country="japon">
+                <div class="country-header">
+                    <span class="country-flag">🇯🇵</span>
+                    <h2 class="country-title">Japón</h2>
+                </div>
+                
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Populares</h3>
+                    <div class="artists-grid-page" id="japon-populares">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Emergentes</h3>
+                    <div class="artists-grid-page" id="japon-emergentes">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Francia -->
+            <div class="country-section" data-country="francia">
+                <div class="country-header">
+                    <span class="country-flag">🇫🇷</span>
+                    <h2 class="country-title">Francia</h2>
+                </div>
+                
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Populares</h3>
+                    <div class="artists-grid-page" id="francia-populares">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="artists-category">
+                    <h3 class="category-title">Artistas Emergentes</h3>
+                    <div class="artists-grid-page" id="francia-emergentes">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Artista -->
+    <div class="modal" id="artistModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Meloopedia</h3>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Cargar artistas al iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarArtistasPorPais();
+            inicializarFiltros();
+        });
+
+        function cargarArtistasPorPais() {
+            const paises = ['panama', 'mexico', 'usa', 'japon', 'francia'];
+            
+            paises.forEach(pais => {
+                const artistasPais = artistas[pais] || [];
+                const gridPopulares = document.getElementById(`${pais}-populares`);
+                const gridEmergentes = document.getElementById(`${pais}-emergentes`);
+                
+                if (gridPopulares) {
+                    gridPopulares.innerHTML = artistasPais.map(artista => `
+                        <div class="artist-card" onclick="abrirModalArtista(${artista.id})">
+                            <div class="artist-image">${artista.bandera}</div>
+                            <span class="artist-flag">${artista.bandera}</span>
+                            <div class="artist-info">
+                                <h3 class="artist-name">${artista.nombre}</h3>
+                                <p class="artist-country">${artista.pais}</p>
+                                <span class="artist-genre">${artista.genero}</span>
+                            </div>
+                            <div class="artist-listen">▶</div>
+                        </div>
+                    `).join('');
+                }
+
+                // Artistas emergentes (simulados)
+                const emergentes = artistasEmergentes.filter(a => 
+                    (pais === 'panama' && a.pais === 'Panamá') ||
+                    (pais === 'mexico' && a.pais === 'México') ||
+                    (pais === 'usa' && a.pais === 'Estados Unidos') ||
+                    (pais === 'japon' && a.pais === 'Japón') ||
+                    (pais === 'francia' && a.pais === 'Francia')
+                );
+
+                if (gridEmergentes) {
+                    gridEmergentes.innerHTML = emergentes.map(artista => `
+                        <div class="artist-card">
+                            <div class="artist-image">${artista.bandera}</div>
+                            <span class="artist-flag">${artista.bandera}</span>
+                            <div class="artist-info">
+                                <h3 class="artist-name">${artista.nombre}</h3>
+                                <p class="artist-country">${artista.pais}</p>
+                                <span class="artist-genre">${artista.genero}</span>
+                            </div>
+                            <div class="artist-listen">▶</div>
+                        </div>
+                    `).join('');
+                }
+            });
+        }
+
+        function inicializarFiltros() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const countrySections = document.querySelectorAll('.country-section');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    if (filter === 'all') {
+                        countrySections.forEach(section => {
+                            section.style.display = 'block';
+                        });
+                    } else {
+                        countrySections.forEach(section => {
+                            if (section.getAttribute('data-country') === filter) {
+                                section.style.display = 'block';
+                                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            } else {
+                                section.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
