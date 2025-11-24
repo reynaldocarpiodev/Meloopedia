@@ -63,6 +63,462 @@ body {
     line-height: 1.6;
     transition: background-color var(--transition-slow), color var(--transition-slow);
     overflow-x: hidden;
+    position: relative;
+}
+
+/* ============================================
+   FONDO MUSICAL ANIMADO
+   ============================================ */
+
+.musical-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        #0d1117 0%, 
+        #1a1f2e 25%, 
+        #2d1b3d 50%, 
+        #1f2937 75%, 
+        #0d1117 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Ondas de sonido animadas */
+.musical-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    opacity: 0.4;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(212, 175, 55, 0.3),
+        rgba(244, 208, 63, 0.4),
+        rgba(212, 175, 55, 0.3),
+        transparent);
+    border-radius: 50% 50% 0 0;
+    animation: waveAnimation 8s ease-in-out infinite;
+}
+
+.wave-1 {
+    animation-delay: 0s;
+    height: 120px;
+    opacity: 0.3;
+}
+
+.wave-2 {
+    animation-delay: 1s;
+    height: 150px;
+    opacity: 0.25;
+    transform: translateY(-30px);
+}
+
+.wave-3 {
+    animation-delay: 2s;
+    height: 100px;
+    opacity: 0.2;
+    transform: translateY(-50px);
+}
+
+.wave-4 {
+    animation-delay: 3s;
+    height: 130px;
+    opacity: 0.15;
+    transform: translateY(-70px);
+}
+
+@keyframes waveAnimation {
+    0%, 100% {
+        transform: translateX(0) translateY(0) scaleX(1);
+        border-radius: 50% 50% 0 0;
+    }
+    25% {
+        transform: translateX(5%) translateY(-10px) scaleX(1.1);
+        border-radius: 60% 40% 0 0;
+    }
+    50% {
+        transform: translateX(0) translateY(-20px) scaleX(0.9);
+        border-radius: 40% 60% 0 0;
+    }
+    75% {
+        transform: translateX(-5%) translateY(-10px) scaleX(1.05);
+        border-radius: 55% 45% 0 0;
+    }
+}
+
+/* Notas musicales flotantes */
+.musical-notes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.note {
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(212, 175, 55, 0.6);
+    animation: floatNote 20s linear infinite;
+    opacity: 0;
+}
+
+.note-1 {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 15s;
+}
+
+.note-2 {
+    left: 25%;
+    animation-delay: 2s;
+    animation-duration: 18s;
+    font-size: 2.5rem;
+}
+
+.note-3 {
+    left: 40%;
+    animation-delay: 4s;
+    animation-duration: 16s;
+    font-size: 3.5rem;
+}
+
+.note-4 {
+    left: 55%;
+    animation-delay: 1s;
+    animation-duration: 20s;
+    font-size: 2.8rem;
+}
+
+.note-5 {
+    left: 70%;
+    animation-delay: 3s;
+    animation-duration: 17s;
+    font-size: 3.2rem;
+}
+
+.note-6 {
+    left: 85%;
+    animation-delay: 5s;
+    animation-duration: 19s;
+    font-size: 2.6rem;
+}
+
+.note-7 {
+    left: 15%;
+    animation-delay: 6s;
+    animation-duration: 14s;
+    font-size: 3.8rem;
+}
+
+.note-8 {
+    left: 65%;
+    animation-delay: 7s;
+    animation-duration: 21s;
+    font-size: 2.4rem;
+}
+
+@keyframes floatNote {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Visualizador de audio animado */
+.audio-visualizer {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 150px;
+    opacity: 0.5;
+}
+
+.bar {
+    width: 8px;
+    background: linear-gradient(180deg, 
+        rgba(212, 175, 55, 0.8),
+        rgba(244, 208, 63, 0.6),
+        rgba(212, 175, 55, 0.4));
+    border-radius: 4px 4px 0 0;
+    animation: barPulse 1.5s ease-in-out infinite;
+}
+
+.bar-1 {
+    height: 30px;
+    animation-delay: 0s;
+}
+
+.bar-2 {
+    height: 60px;
+    animation-delay: 0.1s;
+}
+
+.bar-3 {
+    height: 90px;
+    animation-delay: 0.2s;
+}
+
+.bar-4 {
+    height: 120px;
+    animation-delay: 0.3s;
+}
+
+.bar-5 {
+    height: 150px;
+    animation-delay: 0.4s;
+}
+
+.bar-6 {
+    height: 120px;
+    animation-delay: 0.5s;
+}
+
+.bar-7 {
+    height: 90px;
+    animation-delay: 0.6s;
+}
+
+.bar-8 {
+    height: 60px;
+    animation-delay: 0.7s;
+}
+
+.bar-9 {
+    height: 40px;
+    animation-delay: 0.8s;
+}
+
+.bar-10 {
+    height: 25px;
+    animation-delay: 0.9s;
+}
+
+@keyframes barPulse {
+    0%, 100% {
+        transform: scaleY(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scaleY(1.5);
+        opacity: 1;
+    }
+}
+
+/* Patrones musicales (pentagramas) */
+.musical-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.pattern-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(212, 175, 55, 0.5),
+        transparent);
+    left: 0;
+}
+
+.line-1 {
+    top: 20%;
+    animation: lineMove 12s linear infinite;
+}
+
+.line-2 {
+    top: 35%;
+    animation: lineMove 15s linear infinite reverse;
+}
+
+.line-3 {
+    top: 50%;
+    animation: lineMove 10s linear infinite;
+}
+
+.line-4 {
+    top: 65%;
+    animation: lineMove 18s linear infinite reverse;
+}
+
+.line-5 {
+    top: 80%;
+    animation: lineMove 14s linear infinite;
+}
+
+@keyframes lineMove {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Efectos adicionales */
+.musical-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(244, 208, 63, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    animation: pulseGlow 8s ease-in-out infinite;
+}
+
+/* Asegurar que el footer y otros elementos estén sobre el fondo */
+.footer {
+    position: relative;
+    z-index: 1;
+}
+
+.modal {
+    z-index: 2000;
+}
+
+.audio-player {
+    position: relative;
+    z-index: 100;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Ajustes para modo claro */
+body.light-mode .musical-background {
+    background: linear-gradient(135deg, 
+        #f9fafb 0%, 
+        #f3f4f6 25%, 
+        #e5e7eb 50%, 
+        #f3f4f6 75%, 
+        #f9fafb 100%);
+    background-size: 400% 400%;
+}
+
+body.light-mode .wave {
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(212, 175, 55, 0.2),
+        rgba(244, 208, 63, 0.3),
+        rgba(212, 175, 55, 0.2),
+        transparent);
+}
+
+body.light-mode .note {
+    color: rgba(212, 175, 55, 0.4);
+}
+
+body.light-mode .bar {
+    background: linear-gradient(180deg, 
+        rgba(212, 175, 55, 0.5),
+        rgba(244, 208, 63, 0.4),
+        rgba(212, 175, 55, 0.3));
+}
+
+body.light-mode .pattern-line {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(212, 175, 55, 0.3),
+        transparent);
+}
+
+body.light-mode .musical-background::before {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(244, 208, 63, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .note {
+        font-size: 2rem;
+    }
+    
+    .audio-visualizer {
+        bottom: 50px;
+        height: 100px;
+        gap: 4px;
+    }
+    
+    .bar {
+        width: 6px;
+    }
+    
+    .wave {
+        height: 60px;
+    }
+    
+    .wave-1 { height: 80px; }
+    .wave-2 { height: 100px; }
+    .wave-3 { height: 70px; }
+    .wave-4 { height: 90px; }
+}
+
+@media (max-width: 480px) {
+    .musical-background {
+        opacity: 0.7;
+    }
+    
+    .note {
+        font-size: 1.5rem;
+    }
+    
+    .audio-visualizer {
+        bottom: 30px;
+        height: 80px;
+    }
 }
 
 /* Modo claro */
@@ -73,6 +529,447 @@ body.light-mode {
 
 body.light-mode .section-dark {
     background-color: #e5e7eb;
+}
+
+/* ============================================
+   ESTILOS COMPLETOS PARA MODO CLARO
+   ============================================ */
+
+/* Textos en modo claro */
+body.light-mode,
+body.light-mode p,
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4,
+body.light-mode h5,
+body.light-mode h6,
+body.light-mode span,
+body.light-mode div {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .section-subtitle,
+body.light-mode .artist-country,
+body.light-mode .hero-description,
+body.light-mode .trivia-result-message,
+body.light-mode small,
+body.light-mode .color-texto-muted {
+    color: var(--color-texto-muted-claro) !important;
+}
+
+/* Enlaces en modo claro */
+body.light-mode .nav-link {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .nav-link:hover {
+    color: var(--color-acento);
+}
+
+body.light-mode a {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .footer a {
+    color: var(--color-texto-muted-claro);
+}
+
+body.light-mode .footer a:hover {
+    color: var(--color-acento);
+}
+
+/* Cards y contenedores en modo claro */
+body.light-mode .artist-card,
+body.light-mode .education-card,
+body.light-mode .emergente-card,
+body.light-mode .trivia-card,
+body.light-mode .trivia-card-page,
+body.light-mode .modal-content,
+body.light-mode .modal-artist-header,
+body.light-mode .create-trivia-form,
+body.light-mode .trivia-item-card {
+    background-color: var(--color-primario-claro) !important;
+    border-color: #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light-mode .artist-card:hover,
+body.light-mode .trivia-item-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode .section {
+    background-color: var(--color-fondo-claro);
+}
+
+body.light-mode .nav-menu.active {
+    background-color: var(--color-primario-claro);
+}
+
+body.light-mode .audio-player {
+    background-color: var(--color-primario-claro);
+    border-color: #e5e7eb;
+}
+
+/* Inputs y formularios en modo claro */
+body.light-mode .form-control,
+body.light-mode input[type="text"],
+body.light-mode input[type="url"],
+body.light-mode textarea,
+body.light-mode select {
+    background-color: #ffffff !important;
+    color: var(--color-texto-claro) !important;
+    border-color: #d1d5db !important;
+}
+
+body.light-mode .form-control:focus,
+body.light-mode input:focus,
+body.light-mode textarea:focus,
+body.light-mode select:focus {
+    border-color: var(--color-acento) !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Opciones de trivia en modo claro */
+body.light-mode .trivia-option {
+    background-color: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .trivia-option:hover:not(.disabled) {
+    background-color: #e5e7eb !important;
+    border-color: var(--color-acento) !important;
+}
+
+body.light-mode .trivia-option.correct {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: #059669 !important;
+}
+
+body.light-mode .trivia-option.incorrect {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: #dc2626 !important;
+}
+
+/* Feedback de trivia en modo claro */
+body.light-mode .trivia-feedback.correct {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: #059669 !important;
+    border-left-color: #10b981 !important;
+}
+
+body.light-mode .trivia-feedback.incorrect {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: #dc2626 !important;
+    border-left-color: #ef4444 !important;
+}
+
+/* Botones en modo claro */
+body.light-mode .btn-outline {
+    border-color: var(--color-acento);
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .btn-outline:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+body.light-mode .add-option-btn {
+    border-color: #d1d5db;
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .add-option-btn:hover {
+    border-color: var(--color-acento);
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* Badges y etiquetas en modo claro */
+body.light-mode .artist-genre,
+body.light-mode .award-badge,
+body.light-mode .country-artist-item {
+    background-color: rgba(212, 175, 55, 0.1) !important;
+    color: var(--color-texto-claro) !important;
+    border-color: var(--color-acento) !important;
+}
+
+/* Modales en modo claro */
+body.light-mode .modal {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .modal-content {
+    background-color: var(--color-primario-claro) !important;
+}
+
+body.light-mode .modal-close {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .modal-close:hover {
+    color: var(--color-acento);
+}
+
+/* Hero sections en modo claro */
+body.light-mode .hero,
+body.light-mode .trivia-hero {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 50%, #d1d5db 100%) !important;
+}
+
+body.light-mode .hero-content,
+body.light-mode .trivia-hero-content {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: #e5e7eb !important;
+}
+
+/* Progress bars en modo claro */
+body.light-mode .trivia-progress,
+body.light-mode .progress-bar,
+body.light-mode .xp-bar {
+    background-color: #e5e7eb !important;
+}
+
+/* Borders en modo claro */
+body.light-mode .border-bottom,
+body.light-mode hr,
+body.light-mode .country-header,
+body.light-mode .trivia-header-page {
+    border-color: #e5e7eb !important;
+}
+
+/* Cards específicas */
+body.light-mode .category-btn {
+    background-color: #ffffff !important;
+    border-color: #e5e7eb !important;
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .category-btn:hover {
+    background-color: #f3f4f6 !important;
+    border-color: var(--color-acento) !important;
+}
+
+body.light-mode .category-btn.active {
+    background: linear-gradient(135deg, var(--color-acento), #f4d03f) !important;
+    color: #111827 !important;
+}
+
+/* Footer en modo claro */
+body.light-mode .footer {
+    background-color: #f3f4f6 !important;
+    border-top-color: #e5e7eb !important;
+}
+
+body.light-mode .footer-section h3,
+body.light-mode .footer-section h4 {
+    color: var(--color-texto-claro) !important;
+}
+
+/* Menú móvil en modo claro */
+body.light-mode .menu-toggle span {
+    background-color: var(--color-texto-claro);
+}
+
+/* Opciones de radio en modo claro */
+body.light-mode input[type="radio"] {
+    accent-color: var(--color-acento);
+}
+
+/* Listas y elementos de lista */
+body.light-mode ul,
+body.light-mode li {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .footer ul li a {
+    color: var(--color-texto-muted-claro);
+}
+
+/* Scrollbar en modo claro (para navegadores compatibles) */
+body.light-mode ::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+body.light-mode ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+}
+
+body.light-mode ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* Títulos y encabezados específicos en modo claro */
+body.light-mode .section-title {
+    color: var(--color-acento) !important;
+}
+
+body.light-mode .hero-title,
+body.light-mode .trivia-hero h1 {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .artist-name,
+body.light-mode .emergente-name,
+body.light-mode h3.artist-name {
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .hero-subtitle,
+body.light-mode .hero-description {
+    color: var(--color-texto-muted-claro) !important;
+}
+
+body.light-mode .trivia-question {
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .trivia-progress-text {
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .trivia-item-title {
+    color: var(--color-acento) !important;
+}
+
+body.light-mode .trivia-item-meta,
+body.light-mode .trivia-item-stats {
+    color: var(--color-texto-muted-claro) !important;
+}
+
+body.light-mode .trivia-item-description {
+    color: var(--color-texto-muted-claro) !important;
+}
+
+body.light-mode .trivia-result h2,
+body.light-mode .trivia-result-score {
+    color: var(--color-acento);
+}
+
+/* Información de país en modo claro */
+body.light-mode .country-tooltip {
+    background-color: var(--color-primario-claro);
+    color: var(--color-texto-claro);
+    border-color: #e5e7eb;
+}
+
+/* Reproductor de audio en modo claro */
+body.light-mode .player-title,
+body.light-mode .player-artist {
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .player-btn {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .player-btn:hover {
+    color: var(--color-acento);
+}
+
+/* Estados disabled en modo claro */
+body.light-mode .trivia-option.disabled {
+    opacity: 0.6;
+    background-color: #f3f4f6 !important;
+}
+
+/* Campos de formulario específicos */
+body.light-mode .option-input-group input[type="text"] {
+    background-color: #ffffff !important;
+    color: var(--color-texto-claro) !important;
+}
+
+body.light-mode .form-label {
+    color: var(--color-texto-claro) !important;
+}
+
+/* Mapas y marcadores en modo claro */
+body.light-mode .country-marker .marker-dot {
+    background-color: var(--color-acento);
+}
+
+body.light-mode .map-info {
+    color: var(--color-texto-muted-claro);
+}
+
+/* Educación y cards de educación */
+body.light-mode .education-icon {
+    color: var(--color-acento);
+}
+
+body.light-mode .education-card h3 {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .education-card p {
+    color: var(--color-texto-muted-claro);
+}
+
+/* Placeholder en modo claro */
+body.light-mode ::placeholder {
+    color: #9ca3af !important;
+    opacity: 0.7;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+    color: #9ca3af !important;
+}
+
+/* Botones especiales */
+body.light-mode .btn-vote {
+    background-color: transparent;
+    border-color: var(--color-acento);
+    color: var(--color-acento);
+}
+
+body.light-mode .btn-vote:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+}
+
+body.light-mode .btn-vote.voted {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-color: #10b981;
+    color: #10b981;
+}
+
+/* Contenedores especiales de trivia */
+body.light-mode #triviaContent {
+    color: var(--color-texto-claro);
+}
+
+body.light-mode .trivia-header-page span {
+    color: var(--color-texto-claro);
+}
+
+/* Mejoras de contraste para mejor legibilidad */
+body.light-mode {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Asegurar que todos los textos sean visibles */
+body.light-mode * {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Override para estilos inline que usan variables de color */
+body.light-mode [style*="color: var(--color-texto-muted)"] {
+    color: var(--color-texto-muted-claro) !important;
+}
+
+body.light-mode [style*="color: var(--color-texto)"] {
+    color: var(--color-texto-claro) !important;
+}
+
+/* Asegurar que las variables CSS se actualicen correctamente en modo claro */
+body.light-mode {
+    --color-texto: var(--color-texto-claro);
+    --color-texto-muted: var(--color-texto-muted-claro);
+    --color-primario: var(--color-primario-claro);
+    --color-fondo: var(--color-fondo-claro);
+    --color-borde: #d1d5db;
 }
 
 /* ============================================
@@ -271,6 +1168,8 @@ body.light-mode .header {
     text-align: center;
     padding: var(--spacing-xl) var(--spacing-md);
     overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--color-fondo) 0%, var(--color-secundario) 100%);
 }
 
 .hero-background {
@@ -419,6 +1318,7 @@ body.light-mode .header {
 .section {
     padding: var(--spacing-xl) var(--spacing-md);
     position: relative;
+    z-index: 1;
 }
 
 .section-dark {
@@ -478,7 +1378,6 @@ body.light-mode .section-dark {
 .artist-image {
     width: 100%;
     height: 250px;
-    object-fit: cover;
     background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
     display: flex;
     align-items: center;
@@ -488,10 +1387,18 @@ body.light-mode .section-dark {
     overflow: hidden;
 }
 
+.artist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .artist-image::after {
     content: '🎵';
     position: absolute;
     opacity: 0.3;
+    z-index: -1;
 }
 
 .artist-flag {
@@ -826,6 +1733,15 @@ body.light-mode .section-dark {
     justify-content: center;
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
+    overflow: hidden;
+}
+
+.emergente-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
 }
 
 .emergente-name {
@@ -1034,6 +1950,15 @@ body.light-mode .section-dark {
     align-items: center;
     justify-content: center;
     font-size: 5rem;
+    overflow: hidden;
+}
+
+.modal-artist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
 }
 
 .modal-artist-info h2 {
@@ -1207,6 +2132,8 @@ body.light-mode .section-dark {
     background-color: var(--color-secundario);
     padding: var(--spacing-lg) var(--spacing-md);
     margin-top: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content {

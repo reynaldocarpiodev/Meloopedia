@@ -375,7 +375,9 @@
                 if (gridPopulares) {
                     gridPopulares.innerHTML = artistasPais.map(artista => `
                         <div class="artist-card" onclick="abrirModalArtista(${artista.id})">
-                            <div class="artist-image">${artista.bandera}</div>
+                            <div class="artist-image">
+                                <img src="${artista.imagen || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces'}" alt="${artista.nombre}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces';">
+                            </div>
                             <span class="artist-flag">${artista.bandera}</span>
                             <div class="artist-info">
                                 <h3 class="artist-name">${artista.nombre}</h3>
@@ -399,7 +401,9 @@
                 if (gridEmergentes) {
                     gridEmergentes.innerHTML = emergentes.map(artista => `
                         <div class="artist-card">
-                            <div class="artist-image">${artista.bandera}</div>
+                            <div class="artist-image">
+                                <img src="${artista.imagen || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces'}" alt="${artista.nombre}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces';">
+                            </div>
                             <span class="artist-flag">${artista.bandera}</span>
                             <div class="artist-info">
                                 <h3 class="artist-name">${artista.nombre}</h3>

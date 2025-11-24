@@ -36,7 +36,7 @@ const artistas = {
             pais: "México",
             bandera: "🇲🇽",
             genero: "Rock Latino",
-            imagen: "https://images.unsplash.com/photo 1511671782779-c97d3d27a5d4?w=400&h=400&fit=crop&crop=faces",
+            imagen: "https://images.unsplash.com/photo-1511671782779-c97d3d27a5d4?w=400&h=400&fit=crop&crop=faces",
             biografia: "Carlos Santana es un guitarrista mexicano-estadounidense que fusiona rock, blues y música latina. Su álbum 'Supernatural' ganó 8 premios Grammy.",
             premios: ["10 Grammy Awards", "3 Grammy Latinos", "Rock and Roll Hall of Fame"],
             curiosidades: "Santana ha vendido más de 100 millones de discos en todo el mundo.",
@@ -88,6 +88,7 @@ const artistas = {
             pais: "Japón",
             bandera: "🇯🇵",
             genero: "J-Pop / Soundtrack",
+            imagen: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=400&h=400&fit=crop&crop=faces",
             biografia: "Yoko Kanno es una compositora y pianista japonesa conocida por sus bandas sonoras de anime y videojuegos. Ha trabajado en series como 'Cowboy Bebop' y 'Ghost in the Shell'.",
             premios: ["Japan Academy Prize", "Anime Awards"],
             curiosidades: "Ha compuesto música para más de 50 series de anime y películas.",
@@ -99,6 +100,7 @@ const artistas = {
             pais: "Japón",
             bandera: "🇯🇵",
             genero: "Electrónica / Ambient",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Ryuichi Sakamoto fue un compositor, productor y actor japonés, pionero de la música electrónica. Ganó un Oscar por la banda sonora de 'El último emperador'.",
             premios: ["Oscar", "Golden Globe", "BAFTA"],
             curiosidades: "Fue miembro fundador de Yellow Magic Orchestra, grupo pionero del synth-pop.",
@@ -112,6 +114,7 @@ const artistas = {
             pais: "Francia",
             bandera: "🇫🇷",
             genero: "Chanson",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Édith Piaf fue una cantante francesa, una de las más grandes intérpretes del siglo XX. Conocida como 'El pequeño gorrión de París', su canción 'La Vie en Rose' es un ícono mundial.",
             premios: ["Grammy Hall of Fame"],
             curiosidades: "Su vida fue llevada al cine en la película 'La Vie en Rose' (2007).",
@@ -123,6 +126,7 @@ const artistas = {
             pais: "Francia",
             bandera: "🇫🇷",
             genero: "Electronic",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Daft Punk fue un dúo francés de música electrónica formado por Thomas Bangalter y Guy-Manuel de Homem-Christo. Revolucionaron la música dance con álbumes como 'Random Access Memories'.",
             premios: ["6 Grammy Awards", "Grammy Album of the Year"],
             curiosidades: "Se disolvieron en 2021 después de 28 años de carrera, siempre ocultando sus identidades con cascos.",
@@ -136,6 +140,7 @@ const artistas = {
             pais: "España",
             bandera: "🇪🇸",
             genero: "Flamenco Pop",
+            imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Rosalía es una cantante y compositora española que fusiona flamenco tradicional con música urbana y pop moderno. Su álbum 'El Mal Querer' ganó múltiples premios.",
             premios: ["Grammy Latino", "Premios Latin Grammy"],
             curiosidades: "Es la primera artista española en ganar un Grammy Latino como Mejor Álbum.",
@@ -147,6 +152,7 @@ const artistas = {
             pais: "España",
             bandera: "🇪🇸",
             genero: "Flamenco",
+            imagen: "https://images.unsplash.com/photo-1511671782779-c97d3d27a5d4?w=400&h=400&fit=crop&crop=faces",
             biografia: "Paco de Lucía fue un guitarrista español considerado uno de los mejores guitarristas de flamenco de todos los tiempos.",
             premios: ["Grammy Award", "Premio Príncipe de Asturias"],
             curiosidades: "Revolucionó el flamenco fusionándolo con jazz y otros géneros.",
@@ -160,6 +166,7 @@ const artistas = {
             pais: "Brasil",
             bandera: "🇧🇷",
             genero: "MPB / Bossa Nova",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Caetano Veloso es un músico, cantante y compositor brasileño, una de las figuras más importantes de la música popular brasileña y del movimiento tropicalista.",
             premios: ["Grammy Latino", "Premio Grammy"],
             curiosidades: "Fue exiliado durante la dictadura militar brasileña por sus letras políticas.",
@@ -171,6 +178,7 @@ const artistas = {
             pais: "Brasil",
             bandera: "🇧🇷",
             genero: "MPB / Samba",
+            imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
             biografia: "Gilberto Gil es un cantante, guitarrista y compositor brasileño, pionero del movimiento tropicalista y ex ministro de Cultura de Brasil.",
             premios: ["Grammy Award", "Grammy Latino"],
             curiosidades: "Fue Ministro de Cultura de Brasil de 2003 a 2008.",
@@ -184,6 +192,7 @@ const artistas = {
             pais: "Argentina",
             bandera: "🇦🇷",
             genero: "Rock",
+            imagen: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=400&fit=crop&crop=faces",
             biografia: "Gustavo Cerati fue un músico, cantante y compositor argentino, líder de la banda Soda Stereo, considerada una de las más influyentes del rock en español.",
             premios: ["Grammy Latino", "MTV Video Music Awards"],
             curiosidades: "Soda Stereo fue la primera banda de rock en español en llenar estadios en toda Latinoamérica.",
@@ -195,6 +204,7 @@ const artistas = {
             pais: "Argentina",
             bandera: "🇦🇷",
             genero: "Folklore",
+            imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Mercedes Sosa fue una cantante argentina de música folclórica, conocida como 'La Negra Sosa', símbolo de la música latinoamericana.",
             premios: ["Grammy Latino", "Premio Gardel"],
             curiosidades: "Fue exiliada durante la dictadura militar argentina.",
@@ -208,6 +218,7 @@ const artistas = {
             pais: "Colombia",
             bandera: "🇨🇴",
             genero: "Pop / Latin",
+            imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Shakira es una cantante, compositora y bailarina colombiana, una de las artistas latinas más exitosas del mundo con múltiples premios Grammy.",
             premios: ["3 Grammy Awards", "12 Grammy Latinos"],
             curiosidades: "Es la artista colombiana con más ventas de discos en la historia.",
@@ -219,6 +230,7 @@ const artistas = {
             pais: "Colombia",
             bandera: "🇨🇴",
             genero: "Vallenato / Pop",
+            imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
             biografia: "Carlos Vives es un cantante y compositor colombiano que popularizó el vallenato fusionándolo con pop y rock.",
             premios: ["2 Grammy Awards", "11 Grammy Latinos"],
             curiosidades: "Revolucionó la música colombiana llevando el vallenato a nivel internacional.",
@@ -232,6 +244,7 @@ const artistas = {
             pais: "Reino Unido",
             bandera: "🇬🇧",
             genero: "Rock",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "The Beatles fue una banda de rock británica formada en Liverpool, considerada la más influyente de la historia de la música popular.",
             premios: ["7 Grammy Awards", "Oscar"],
             curiosidades: "Han vendido más de 600 millones de discos en todo el mundo.",
@@ -243,6 +256,7 @@ const artistas = {
             pais: "Reino Unido",
             bandera: "🇬🇧",
             genero: "Soul / Pop",
+            imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Adele es una cantante y compositora británica conocida por su poderosa voz y sus baladas emotivas.",
             premios: ["15 Grammy Awards", "Oscar", "Golden Globe"],
             curiosidades: "Su álbum '21' es uno de los más vendidos del siglo XXI.",
@@ -256,6 +270,7 @@ const artistas = {
             pais: "Italia",
             bandera: "🇮🇹",
             genero: "Ópera",
+            imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
             biografia: "Luciano Pavarotti fue un tenor italiano, uno de los cantantes de ópera más famosos del mundo y parte de Los Tres Tenores.",
             premios: ["5 Grammy Awards", "Grammy Lifetime Achievement"],
             curiosidades: "Fue conocido como 'El Rey del Do de pecho' por su capacidad vocal excepcional.",
@@ -267,6 +282,7 @@ const artistas = {
             pais: "Italia",
             bandera: "🇮🇹",
             genero: "Ópera / Pop Clásico",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Andrea Bocelli es un tenor italiano que fusiona ópera clásica con música pop, vendiendo millones de discos mundialmente.",
             premios: ["Grammy Award", "Golden Globe"],
             curiosidades: "A pesar de ser ciego desde los 12 años, se convirtió en uno de los tenores más exitosos del mundo.",
@@ -280,6 +296,7 @@ const artistas = {
             pais: "Corea del Sur",
             bandera: "🇰🇷",
             genero: "K-Pop",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "BTS es un grupo de K-pop surcoreano que ha revolucionado la música global, siendo el primer grupo coreano en alcanzar el número 1 en Billboard.",
             premios: ["Billboard Music Awards", "American Music Awards"],
             curiosidades: "Son embajadores de buena voluntad de UNICEF y han hablado en la ONU.",
@@ -291,6 +308,7 @@ const artistas = {
             pais: "Corea del Sur",
             bandera: "🇰🇷",
             genero: "K-Pop",
+            imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
             biografia: "BLACKPINK es un grupo femenino de K-pop que ha roto múltiples récords y es uno de los grupos más populares del mundo.",
             premios: ["MTV Video Music Awards", "Billboard Music Awards"],
             curiosidades: "Son el grupo femenino de K-pop más exitoso de la historia.",
@@ -304,6 +322,7 @@ const artistas = {
             pais: "Cuba",
             bandera: "🇨🇺",
             genero: "Salsa",
+            imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Celia Cruz fue una cantante cubana conocida como 'La Reina de la Salsa', una de las artistas latinas más influyentes del siglo XX.",
             premios: ["3 Grammy Awards", "Grammy Lifetime Achievement"],
             curiosidades: "Su frase 'Azúcar!' se convirtió en su marca registrada.",
@@ -315,6 +334,7 @@ const artistas = {
             pais: "Cuba",
             bandera: "🇨🇺",
             genero: "Son / Trova",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Buena Vista Social Club es un grupo de músicos cubanos que popularizó la música tradicional cubana en todo el mundo.",
             premios: ["Grammy Award"],
             curiosidades: "Su documental ganó un Grammy y fue nominado al Oscar.",
@@ -328,6 +348,7 @@ const artistas = {
             pais: "Nigeria",
             bandera: "🇳🇬",
             genero: "Afrobeat",
+            imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
             biografia: "Fela Kuti fue un músico y activista político nigeriano, creador del género afrobeat y símbolo de resistencia en África.",
             premios: ["Grammy Hall of Fame"],
             curiosidades: "Fue encarcelado más de 200 veces por su activismo político.",
@@ -339,6 +360,7 @@ const artistas = {
             pais: "Nigeria",
             bandera: "🇳🇬",
             genero: "Afrobeat / Reggae",
+            imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
             biografia: "Burna Boy es un cantante y compositor nigeriano que ha llevado el afrobeat a la escena musical global.",
             premios: ["Grammy Award"],
             curiosidades: "Ganó el Grammy al Mejor Álbum de Música Global en 2021.",
@@ -456,6 +478,7 @@ const artistasEmergentes = [
         pais: "Panamá",
         bandera: "🇵🇦",
         genero: "Indie Pop",
+        imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
         votos: 0
     },
     {
@@ -464,6 +487,7 @@ const artistasEmergentes = [
         pais: "México",
         bandera: "🇲🇽",
         genero: "Rock Alternativo",
+        imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
         votos: 0
     },
     {
@@ -472,6 +496,7 @@ const artistasEmergentes = [
         pais: "Japón",
         bandera: "🇯🇵",
         genero: "J-Pop",
+        imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
         votos: 0
     },
     {
@@ -480,6 +505,7 @@ const artistasEmergentes = [
         pais: "Francia",
         bandera: "🇫🇷",
         genero: "Electro Pop",
+        imagen: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=faces",
         votos: 0
     },
     {
@@ -488,6 +514,7 @@ const artistasEmergentes = [
         pais: "Estados Unidos",
         bandera: "🇺🇸",
         genero: "Indie Folk",
+        imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces",
         votos: 0
     }
 ];
@@ -570,7 +597,7 @@ function cargarArtistas() {
     grid.innerHTML = todosArtistas.map(artista => `
         <div class="artist-card" onclick="abrirModalArtista(${artista.id})">
             <div class="artist-image">
-                ${artista.bandera}
+                <img src="${artista.imagen}" alt="${artista.nombre}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces';">
             </div>
             <span class="artist-flag">${artista.bandera}</span>
             <div class="artist-info">
@@ -615,7 +642,7 @@ function abrirModalArtista(id) {
     modalBody.innerHTML = `
         <div class="modal-artist-header">
             <div class="modal-artist-image">
-                ${artista.bandera}
+                <img src="${artista.imagen || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces'}" alt="${artista.nombre}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces';">
             </div>
             <div class="modal-artist-info">
                 <h2>${artista.nombre}</h2>
@@ -706,7 +733,7 @@ function cargarArtistasEmergentes() {
         return `
             <div class="emergente-card">
                 <div class="emergente-image">
-                    ${artista.bandera}
+                    <img src="${artista.imagen || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces'}" alt="${artista.nombre}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces';">
                 </div>
                 <h3 class="emergente-name">${artista.nombre}</h3>
                 <p class="emergente-country">${artista.pais} ${artista.bandera}</p>
