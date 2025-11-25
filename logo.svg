@@ -1,0 +1,95 @@
+<svg width="250" height="60" viewBox="0 0 250 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradiente dorado metálico sofisticado -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#f4d03f;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#f4d03f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af37;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradiente para efecto metálico reflejante -->
+    <linearGradient id="shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0" />
+      <stop offset="30%" style="stop-color:#ffffff;stop-opacity:0.5" />
+      <stop offset="60%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+    
+    <!-- Sombra para profundidad -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1"/>
+      <feOffset dx="1" dy="1" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Grupo del logo completo -->
+  <g id="logo-completo">
+    <!-- Onda de sonido horizontal (emergiendo de la nota) -->
+    <g id="sound-wave">
+      <path d="M 4 30 Q 9 20, 14 30 T 24 30" 
+            stroke="url(#goldGradient)" 
+            stroke-width="3" 
+            fill="none" 
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            opacity="0.85"/>
+      <path d="M 6 30 Q 10 22, 14 30 T 22 30" 
+            stroke="url(#goldGradient)" 
+            stroke-width="2.2" 
+            fill="none" 
+            stroke-linecap="round"
+            opacity="0.65"/>
+    </g>
+    
+    <!-- Nota musical (eighth note/quaver) -->
+    <g id="musical-note" filter="url(#shadow)">
+      <!-- Cabeza de la nota (óvalo) -->
+      <ellipse cx="24" cy="20" rx="6" ry="5" 
+               fill="url(#goldGradient)" 
+               stroke="#b8941f" 
+               stroke-width="0.6"/>
+      
+      <!-- Tallo de la nota (vertical) -->
+      <rect x="30" y="12" width="2.5" height="26" 
+            fill="url(#goldGradient)" 
+            rx="1.2"/>
+      
+      <!-- Bandera/flag de la nota (curva hacia arriba y luego hacia abajo) -->
+      <path d="M 32.5 38 Q 37 32, 41 34 Q 45 36, 43 40 Q 39 44, 35 42 Q 31 40, 32.5 38" 
+            stroke="url(#goldGradient)" 
+            stroke-width="2.8" 
+            fill="url(#goldGradient)"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+      
+      <!-- Efecto de brillo en la cabeza de la nota -->
+      <ellipse cx="24" cy="20" rx="3.5" ry="3" fill="url(#shimmer)" opacity="0.6"/>
+    </g>
+    
+    <!-- Texto Meloopedia con fuente serif -->
+    <g id="texto">
+      <text x="55" y="36" 
+            font-family="'Times New Roman', 'Georgia', serif" 
+            font-size="32" 
+            font-weight="bold" 
+            fill="url(#goldGradient)"
+            letter-spacing="1.8px"
+            filter="url(#shadow)">
+        <tspan x="55" font-size="36" letter-spacing="0">M</tspan>
+        <tspan>eloopedia</tspan>
+      </text>
+      
+      <!-- Efecto de brillo sutil en el texto -->
+      <rect x="55" y="12" width="190" height="32" fill="url(#shimmer)" opacity="0.15"/>
+    </g>
+  </g>
+</svg>

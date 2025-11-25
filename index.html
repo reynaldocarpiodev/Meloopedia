@@ -53,8 +53,8 @@
     <header class="header" id="header">
         <nav class="nav">
             <div class="nav-logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <span class="logo-text">Meloopedia</span>
+                <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <img src="logo.svg" alt="Meloopedia" class="logo-image">
                 </a>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -64,18 +64,23 @@
                 <li><a href="mapa.html" class="nav-link">Mapa</a></li>
                 <li><a href="educacion.html" class="nav-link">Educación</a></li>
                 <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="leyendas.html" class="nav-link">Leyendas</a></li>
+                <li><a href="biblioteca.html" class="nav-link">Biblioteca</a></li>
                 <li><a href="buscar.html" class="nav-link">Buscar</a></li>
             </ul>
             <div class="nav-actions">
+                <a href="login.html" class="btn-login" id="btnLogin">
+                    <span class="btn-login-icon">🔐</span>
+                    <span class="btn-login-text">Iniciar Sesión</span>
+                </a>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <span class="profile-icon">👤</span>
+                    <span class="profile-name" id="profileName"></span>
+                    <button class="btn-logout" id="btnLogout" title="Cerrar sesión">✕</button>
+                </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
                     <span class="theme-icon">🌙</span>
                 </button>
-                <div class="user-profile" id="userProfile">
-                    <span class="profile-icon">👤</span>
-                    <span class="xp-bar">
-                        <span class="xp-fill" id="xpFill"></span>
-                    </span>
-                </div>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menú">
                     <span></span>
                     <span></span>
@@ -239,19 +244,25 @@
             <p class="section-subtitle">Aprende sobre la historia y evolución de la música</p>
             <div class="education-grid">
                 <div class="education-card">
-                    <div class="education-icon">📜</div>
+                    <div class="education-image">
+                        <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&h=600&fit=crop" alt="Historia de los Géneros" onerror="this.style.display='none'">
+                    </div>
                     <h3>Historia de los Géneros</h3>
                     <p>Explora la evolución de los géneros musicales desde sus orígenes hasta la actualidad.</p>
                     <button class="btn btn-outline">Leer más</button>
                 </div>
                 <div class="education-card">
-                    <div class="education-icon">🎸</div>
+                    <div class="education-image">
+                        <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=800&h=600&fit=crop" alt="Instrumentos del Mundo" onerror="this.style.display='none'">
+                    </div>
                     <h3>Instrumentos del Mundo</h3>
                     <p>Descubre instrumentos tradicionales y modernos de diferentes culturas.</p>
                     <button class="btn btn-outline">Leer más</button>
                 </div>
                 <div class="education-card">
-                    <div class="education-icon">🎼</div>
+                    <div class="education-image">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop" alt="Evolución del Ritmo" onerror="this.style.display='none'">
+                    </div>
                     <h3>Evolución del Ritmo</h3>
                     <p>Aprende sobre los ritmos que han definido épocas y movimientos musicales.</p>
                     <button class="btn btn-outline">Leer más</button>
@@ -260,19 +271,229 @@
         </div>
     </section>
 
-    <!-- Sección Conexiones Musicales -->
-    <section class="section section-dark" id="conexiones">
+    <!-- Sección Top Charts / Trending -->
+    <section class="section section-dark" id="trending">
         <div class="container">
-            <h2 class="section-title">Conexiones Musicales</h2>
-            <p class="section-subtitle">Explora las influencias y relaciones entre artistas</p>
-            <div class="connections-placeholder">
-                <p>Visualización interactiva de influencias musicales (próximamente)</p>
-                <div class="connection-graph">
-                    <div class="connection-node">Artista A</div>
-                    <div class="connection-line"></div>
-                    <div class="connection-node">Artista B</div>
-                    <div class="connection-line"></div>
-                    <div class="connection-node">Artista C</div>
+            <h2 class="section-title">🔥 Trending Musical</h2>
+            <p class="section-subtitle">Lo más escuchado y popular en este momento</p>
+            
+            <div class="trending-container">
+                <div class="trending-tabs">
+                    <button class="trending-tab active" data-tab="artistas">Top Artistas</button>
+                    <button class="trending-tab" data-tab="canciones">Top Canciones</button>
+                    <button class="trending-tab" data-tab="generos">Géneros en Tendencia</button>
+                </div>
+
+                <!-- Top Artistas -->
+                <div class="trending-content active" id="trendingArtistas">
+                    <div class="trending-list">
+                        <div class="trending-item">
+                            <div class="trending-rank">1</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop" alt="Artista Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Bad Bunny</h3>
+                                <p class="trending-subtitle">Reguetón • 🇵🇷</p>
+                                <div class="trending-stats">
+                                    <span>📈 +45% esta semana</span>
+                                    <span>🎵 2.5M reproducciones</span>
+                                </div>
+                            </div>
+                            <div class="trending-badge">🔥 #1</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">2</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop" alt="Artista Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Taylor Swift</h3>
+                                <p class="trending-subtitle">Pop • 🇺🇸</p>
+                                <div class="trending-stats">
+                                    <span>📈 +38% esta semana</span>
+                                    <span>🎵 2.1M reproducciones</span>
+                                </div>
+                            </div>
+                            <div class="trending-badge">⭐ #2</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">3</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop" alt="Artista Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">The Weeknd</h3>
+                                <p class="trending-subtitle">R&B • 🇨🇦</p>
+                                <div class="trending-stats">
+                                    <span>📈 +32% esta semana</span>
+                                    <span>🎵 1.8M reproducciones</span>
+                                </div>
+                            </div>
+                            <div class="trending-badge">⭐ #3</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">4</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop" alt="Artista Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Rosalía</h3>
+                                <p class="trending-subtitle">Flamenco Pop • 🇪🇸</p>
+                                <div class="trending-stats">
+                                    <span>📈 +28% esta semana</span>
+                                    <span>🎵 1.5M reproducciones</span>
+                                </div>
+                            </div>
+                            <div class="trending-badge">⭐ #4</div>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">5</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=150&h=150&fit=crop" alt="Artista Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">BTS</h3>
+                                <p class="trending-subtitle">K-Pop • 🇰🇷</p>
+                                <div class="trending-stats">
+                                    <span>📈 +25% esta semana</span>
+                                    <span>🎵 1.3M reproducciones</span>
+                                </div>
+                            </div>
+                            <div class="trending-badge">⭐ #5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Canciones -->
+                <div class="trending-content" id="trendingCanciones">
+                    <div class="trending-list">
+                        <div class="trending-item">
+                            <div class="trending-rank">1</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=150&h=150&fit=crop" alt="Canción Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Flowers - Miley Cyrus</h3>
+                                <p class="trending-subtitle">Pop • 2023</p>
+                                <div class="trending-stats">
+                                    <span>🎧 85M reproducciones</span>
+                                    <span>⏱️ 3:20</span>
+                                </div>
+                            </div>
+                            <button class="trending-play-btn">▶</button>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">2</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=150&h=150&fit=crop" alt="Canción Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">As It Was - Harry Styles</h3>
+                                <p class="trending-subtitle">Pop Rock • 2022</p>
+                                <div class="trending-stats">
+                                    <span>🎧 72M reproducciones</span>
+                                    <span>⏱️ 2:47</span>
+                                </div>
+                            </div>
+                            <button class="trending-play-btn">▶</button>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">3</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=150&h=150&fit=crop" alt="Canción Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Un Verano Sin Ti - Bad Bunny</h3>
+                                <p class="trending-subtitle">Reguetón • 2022</p>
+                                <div class="trending-stats">
+                                    <span>🎧 68M reproducciones</span>
+                                    <span>⏱️ 4:05</span>
+                                </div>
+                            </div>
+                            <button class="trending-play-btn">▶</button>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">4</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=150&h=150&fit=crop" alt="Canción Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Anti-Hero - Taylor Swift</h3>
+                                <p class="trending-subtitle">Pop • 2022</p>
+                                <div class="trending-stats">
+                                    <span>🎧 65M reproducciones</span>
+                                    <span>⏱️ 3:20</span>
+                                </div>
+                            </div>
+                            <button class="trending-play-btn">▶</button>
+                        </div>
+                        <div class="trending-item">
+                            <div class="trending-rank">5</div>
+                            <div class="trending-image">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=150&h=150&fit=crop" alt="Canción Trending">
+                            </div>
+                            <div class="trending-info">
+                                <h3 class="trending-name">Watermelon Sugar - Harry Styles</h3>
+                                <p class="trending-subtitle">Pop Rock • 2019</p>
+                                <div class="trending-stats">
+                                    <span>🎧 60M reproducciones</span>
+                                    <span>⏱️ 2:54</span>
+                                </div>
+                            </div>
+                            <button class="trending-play-btn">▶</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Géneros en Tendencia -->
+                <div class="trending-content" id="trendingGeneros">
+                    <div class="trending-genres-grid">
+                        <div class="trending-genre-card">
+                            <div class="trending-genre-badge">🔥 #1</div>
+                            <div class="trending-genre-image">
+                                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=300&h=300&fit=crop" alt="Reguetón">
+                            </div>
+                            <h3>Reguetón</h3>
+                            <p>+52% esta semana</p>
+                            <div class="trending-genre-stats">
+                                <span>🎵 45M streams</span>
+                            </div>
+                        </div>
+                        <div class="trending-genre-card">
+                            <div class="trending-genre-badge">⭐ #2</div>
+                            <div class="trending-genre-image">
+                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop" alt="Pop">
+                            </div>
+                            <h3>Pop</h3>
+                            <p>+38% esta semana</p>
+                            <div class="trending-genre-stats">
+                                <span>🎵 38M streams</span>
+                            </div>
+                        </div>
+                        <div class="trending-genre-card">
+                            <div class="trending-genre-badge">⭐ #3</div>
+                            <div class="trending-genre-image">
+                                <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=300&h=300&fit=crop" alt="K-Pop">
+                            </div>
+                            <h3>K-Pop</h3>
+                            <p>+35% esta semana</p>
+                            <div class="trending-genre-stats">
+                                <span>🎵 32M streams</span>
+                            </div>
+                        </div>
+                        <div class="trending-genre-card">
+                            <div class="trending-genre-badge">⭐ #4</div>
+                            <div class="trending-genre-image">
+                                <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=300&h=300&fit=crop" alt="Hip Hop">
+                            </div>
+                            <h3>Hip Hop</h3>
+                            <p>+28% esta semana</p>
+                            <div class="trending-genre-stats">
+                                <span>🎵 28M streams</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -314,7 +535,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Meloopedia</h3>
+                    <div class="footer-logo">
+                        <img src="logo.svg" alt="Meloopedia" class="logo-image-footer">
+                    </div>
                     <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
                 </div>
                 <div class="footer-section">
@@ -352,5 +575,42 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Funcionalidad de tabs para Trending
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.trending-tab');
+            const contents = document.querySelectorAll('.trending-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTab = tab.getAttribute('data-tab');
+
+                    // Remover clase active de todos los tabs y contenidos
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    // Agregar clase active al tab y contenido seleccionado
+                    tab.classList.add('active');
+                    const targetContent = document.getElementById(`trending${targetTab.charAt(0).toUpperCase() + targetTab.slice(1)}`);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+
+            // Funcionalidad de botones de reproducción
+            const playButtons = document.querySelectorAll('.trending-play-btn');
+            playButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const item = btn.closest('.trending-item');
+                    const songName = item.querySelector('.trending-name').textContent;
+                    alert(`Reproduciendo: ${songName} 🎵`);
+                    // Aquí se puede integrar con el reproductor de audio
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leyendas Musicales — Meloopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Fondo Musical Animado -->
+    <div class="musical-background">
+        <div class="musical-waves">
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+            <div class="wave wave-4"></div>
+        </div>
+        <div class="musical-notes">
+            <div class="note note-1">♪</div>
+            <div class="note note-2">♫</div>
+            <div class="note note-3">♬</div>
+            <div class="note note-4">♩</div>
+            <div class="note note-5">♭</div>
+            <div class="note note-6">♯</div>
+            <div class="note note-7">♪</div>
+            <div class="note note-8">♫</div>
+        </div>
+        <div class="audio-visualizer">
+            <div class="bar bar-1"></div>
+            <div class="bar bar-2"></div>
+            <div class="bar bar-3"></div>
+            <div class="bar bar-4"></div>
+            <div class="bar bar-5"></div>
+            <div class="bar bar-6"></div>
+            <div class="bar bar-7"></div>
+            <div class="bar bar-8"></div>
+            <div class="bar bar-9"></div>
+            <div class="bar bar-10"></div>
+        </div>
+        <div class="musical-pattern">
+            <div class="pattern-line line-1"></div>
+            <div class="pattern-line line-2"></div>
+            <div class="pattern-line line-3"></div>
+            <div class="pattern-line line-4"></div>
+            <div class="pattern-line line-5"></div>
+        </div>
+    </div>
+    
+    <!-- Barra de Navegación -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                    <img src="logo.svg" alt="Meloopedia" class="logo-image">
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="artistas.html" class="nav-link">Artistas por País</a></li>
+                <li><a href="generos.html" class="nav-link">Géneros</a></li>
+                <li><a href="trivia.html" class="nav-link">Trivia</a></li>
+                <li><a href="mapa.html" class="nav-link">Mapa</a></li>
+                <li><a href="educacion.html" class="nav-link">Educación</a></li>
+                <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
+                <li><a href="leyendas.html" class="nav-link active">Leyendas</a></li>
+                <li><a href="biblioteca.html" class="nav-link">Biblioteca</a></li>
+                <li><a href="buscar.html" class="nav-link">Buscar</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-login" id="btnLogin">
+                    <span class="btn-login-icon">🔐</span>
+                    <span class="btn-login-text">Iniciar Sesión</span>
+                </a>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <span class="profile-icon">👤</span>
+                    <span class="profile-name" id="profileName"></span>
+                    <button class="btn-logout" id="btnLogout" title="Cerrar sesión">✕</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section legends-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">🌟 Leyendas Musicales</h1>
+                <p class="hero-subtitle">Descubre las voces que transformaron la música para siempre</p>
+                <p class="hero-description">
+                    Un tributo a los artistas que marcaron épocas, rompieron récords y dejaron un legado imborrable 
+                    en la historia de la música mundial.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leyendas Grid -->
+    <section class="legends-section">
+        <div class="container">
+            <div class="legends-grid" id="legendsGrid">
+                <!-- Los artistas se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.svg" alt="Meloopedia" class="logo-image-footer">
+                    </div>
+                    <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="artistas.html">Artistas</a></li>
+                        <li><a href="mapa.html">Mapa Musical</a></li>
+                        <li><a href="trivia.html">Trivia</a></li>
+                        <li><a href="educacion.html">Educación</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#acerca">Acerca de</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#terminos">Términos</a></li>
+                        <li><a href="#privacidad">Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociales</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Meloopedia. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        // Datos de las leyendas musicales
+        const leyendasMusicales = [
+            {
+                id: 1,
+                nombre: "Michael Jackson",
+                nombreCompleto: "Michael Joseph Jackson",
+                fechaNacimiento: "29 de agosto de 1958",
+                fechaFallecimiento: "25 de junio de 2009",
+                lugarNacimiento: "Gary, Indiana, Estados Unidos",
+                genero: "Pop, R&B, Rock, Soul",
+                descripcion: "Conocido como el 'Rey del Pop', Michael Jackson revolucionó la música, el baile y la moda. Con más de 400 millones de álbumes vendidos, es uno de los artistas más exitosos de todos los tiempos.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "Zi_XLOBDo_Y", // Billie Jean
+                titulos: [
+                    "15 Premios Grammy",
+                    "26 American Music Awards",
+                    "Récord Guinness: 'Álbum más vendido de todos los tiempos' (Thriller)",
+                    "Artista masculino más premiado de la historia",
+                    "Más de 400 millones de álbumes vendidos"
+                ],
+                logros: [
+                    "Álbumes más vendidos: Thriller (66 millones), Bad, Dangerous",
+                    "Pionero de videos musicales con 'Thriller'",
+                    "Inventó el 'moonwalk' y otras técnicas de baile icónicas",
+                    "Primer artista afroamericano en tener rotación masiva en MTV"
+                ]
+            },
+            {
+                id: 2,
+                nombre: "Freddie Mercury",
+                nombreCompleto: "Farrokh Bulsara",
+                fechaNacimiento: "5 de septiembre de 1946",
+                fechaFallecimiento: "24 de noviembre de 1991",
+                lugarNacimiento: "Stone Town, Zanzíbar",
+                genero: "Rock, Opera Rock, Pop Rock",
+                descripcion: "Vocalista y líder de Queen, Freddie Mercury es considerado uno de los mejores cantantes de la historia. Su carisma, rango vocal de 4 octavas y composiciones épicas lo convirtieron en una leyenda.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "fJ9rUzIMcZQ", // Bohemian Rhapsody
+                titulos: [
+                    "Inducido al Salón de la Fama del Rock and Roll (2001)",
+                    "Vocalista más grande de todos los tiempos (según Classic Rock)",
+                    "300 millones de discos vendidos con Queen",
+                    "Canciones icónicas: Bohemian Rhapsody, We Are The Champions"
+                ],
+                logros: [
+                    "Live Aid 1985: Considerada la mejor actuación en vivo de la historia",
+                    "Compositor de 'Bohemian Rhapsody', una de las canciones más famosas",
+                    "Rango vocal de 4 octavas (F2-F6)",
+                    "Co-fundador de Queen, una de las bandas más exitosas"
+                ]
+            },
+            {
+                id: 3,
+                nombre: "Bob Dylan",
+                nombreCompleto: "Robert Allen Zimmerman",
+                fechaNacimiento: "24 de mayo de 1941",
+                lugarNacimiento: "Duluth, Minnesota, Estados Unidos",
+                genero: "Folk, Rock, Blues, Country",
+                descripcion: "Poeta, cantante y compositor, Bob Dylan es considerado uno de los compositores más influyentes del siglo XX. Sus letras han sido comparadas con poesía literaria.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "MMFj8uDubsE", // Like a Rolling Stone
+                titulos: [
+                    "Premio Nobel de Literatura (2016)",
+                    "11 Premios Grammy",
+                    "Premio Pulitzer Especial (2008)",
+                    "Inducido al Salón de la Fama del Rock and Roll",
+                    "Medalla Presidencial de la Libertad (2012)"
+                ],
+                logros: [
+                    "Más de 125 millones de álbumes vendidos",
+                    "Influenció movimientos sociales y políticos con sus letras",
+                    "Canciones icónicas: Blowin' in the Wind, The Times They Are A-Changin'",
+                    "Artista con más álbumes en el Top 100 de Billboard"
+                ]
+            },
+            {
+                id: 4,
+                nombre: "Elton John",
+                nombreCompleto: "Reginald Kenneth Dwight",
+                fechaNacimiento: "25 de marzo de 1947",
+                lugarNacimiento: "Pinner, Middlesex, Inglaterra",
+                genero: "Pop, Rock, Piano Rock, Soft Rock",
+                descripcion: "Pianista, cantante y compositor con más de 50 años de carrera. Conocido por sus espectaculares conciertos y canciones atemporales que han vendido más de 300 millones de discos.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "DtVBCG6ThDk", // Rocket Man
+                titulos: [
+                    "5 Premios Grammy",
+                    "2 Premios Oscar (mejor canción original)",
+                    "Premio Tony (mejor musical)",
+                    "Inducido al Salón de la Fama del Rock and Roll",
+                    "Knight Bachelor por la Reina Isabel II (1998)"
+                ],
+                logros: [
+                    "Más de 300 millones de álbumes vendidos",
+                    "Más de 50 Top 40 hits en Billboard",
+                    "Candle in the Wind 1997: Single más vendido de todos los tiempos",
+                    "Fundador de la Elton John AIDS Foundation"
+                ]
+            },
+            {
+                id: 5,
+                nombre: "Elvis Presley",
+                nombreCompleto: "Elvis Aaron Presley",
+                fechaNacimiento: "8 de enero de 1935",
+                fechaFallecimiento: "16 de agosto de 1977",
+                lugarNacimiento: "Tupelo, Mississippi, Estados Unidos",
+                genero: "Rock and Roll, Rockabilly, Pop, Country",
+                descripcion: "Conocido como 'El Rey del Rock and Roll', Elvis Presley revolucionó la música popular y la cultura estadounidense. Su estilo vocal único y su carisma lo convirtieron en una figura icónica.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "gj0Rz-uP4Mk", // Jailhouse Rock
+                titulos: [
+                    "'El Rey del Rock and Roll'",
+                    "3 Premios Grammy (incluyendo Lifetime Achievement)",
+                    "Inducido al Salón de la Fama del Rock and Roll (1986)",
+                    "Medalla Presidencial de la Libertad (póstuma)",
+                    "Más de 1,000 millones de discos vendidos (estimado)"
+                ],
+                logros: [
+                    "Pionero del rock and roll en los años 50",
+                    "18 #1 hits en Billboard",
+                    "Primer artista en tener 4 #1 álbumes simultáneos",
+                    "Más de 600 millones de álbumes vendidos mundialmente"
+                ]
+            },
+            {
+                id: 6,
+                nombre: "Aretha Franklin",
+                nombreCompleto: "Aretha Louise Franklin",
+                fechaNacimiento: "25 de marzo de 1942",
+                fechaFallecimiento: "16 de agosto de 2018",
+                lugarNacimiento: "Memphis, Tennessee, Estados Unidos",
+                genero: "Soul, R&B, Gospel, Jazz",
+                descripcion: "Conocida como 'La Reina del Soul', Aretha Franklin poseía una de las voces más poderosas y expresivas de la música. Su influencia trascendió géneros y generaciones.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "f4ryPKk4qjY", // Respect
+                titulos: [
+                    "18 Premios Grammy",
+                    "'La Reina del Soul'",
+                    "Primera mujer en el Salón de la Fama del Rock and Roll",
+                    "Medalla Presidencial de la Libertad (2005)",
+                    "Legenda Grammy Award (1991)"
+                ],
+                logros: [
+                    "112 sencillos en Billboard Hot 100",
+                    "20 #1 hits en R&B charts",
+                    "Voz considerada tesoro nacional de Estados Unidos",
+                    "Influenció a generaciones de cantantes"
+                ]
+            },
+            {
+                id: 7,
+                nombre: "Frank Sinatra",
+                nombreCompleto: "Francis Albert Sinatra",
+                fechaNacimiento: "12 de diciembre de 1915",
+                fechaFallecimiento: "14 de mayo de 1998",
+                lugarNacimiento: "Hoboken, Nueva Jersey, Estados Unidos",
+                genero: "Jazz, Pop, Swing, Big Band",
+                descripcion: "Conocido como 'La Voz', Frank Sinatra fue uno de los artistas más influyentes del siglo XX. Su interpretación vocal y estilo marcaron el estándar para generaciones futuras.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "V1bFr2SWP1I", // My Way
+                titulos: [
+                    "11 Premios Grammy",
+                    "Premio Grammy Lifetime Achievement",
+                    "Medalla Presidencial de la Libertad",
+                    "Medalla de Oro del Congreso",
+                    "'La Voz' - apodo icónico"
+                ],
+                logros: [
+                    "Más de 150 millones de discos vendidos",
+                    "Más de 1,400 grabaciones",
+                    "Influenció el estilo vocal de jazz y pop",
+                    "Ganador de 3 Premios Oscar (como actor)"
+                ]
+            },
+            {
+                id: 8,
+                nombre: "The Beatles",
+                nombreCompleto: "John Lennon, Paul McCartney, George Harrison, Ringo Starr",
+                fechaNacimiento: "1960 - 1970 (activos)",
+                lugarNacimiento: "Liverpool, Inglaterra",
+                genero: "Rock, Pop, Psychedelic Rock",
+                descripcion: "La banda más influyente de todos los tiempos. Los Beatles revolucionaron la música popular, la producción musical y la cultura global durante la década de 1960.",
+                imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop",
+                videoId: "A_MjCqQoLLA", // Hey Jude
+                titulos: [
+                    "7 Premios Grammy",
+                    "Premio Grammy Lifetime Achievement",
+                    "Inducidos al Salón de la Fama del Rock and Roll",
+                    "20 #1 hits en Billboard Hot 100",
+                    "Máximo récord: 5 #1 simultáneos"
+                ],
+                logros: [
+                    "Más de 600 millones de álbumes vendidos",
+                    "Banda más vendida de todos los tiempos",
+                    "Sgt. Pepper's: Considerado el mejor álbum de la historia",
+                    "Influenció prácticamente todos los géneros de música popular"
+                ]
+            }
+        ];
+
+        // Cargar leyendas al iniciar
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarLeyendas();
+            inicializarMenu();
+            inicializarModoOscuro();
+        });
+
+        function cargarLeyendas() {
+            const grid = document.getElementById('legendsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = leyendasMusicales.map(leyenda => `
+                <div class="legend-card">
+                    <div class="legend-header">
+                        <div class="legend-image-container">
+                            <img src="${leyenda.imagen}" alt="${leyenda.nombre}" class="legend-image" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=800&fit=crop'">
+                            <div class="legend-badge">⭐ Leyenda</div>
+                        </div>
+                        <div class="legend-title-section">
+                            <h2 class="legend-name">${leyenda.nombre}</h2>
+                            <p class="legend-genre">${leyenda.genero}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="legend-content">
+                        <p class="legend-description">${leyenda.descripcion}</p>
+                        
+                        <div class="legend-info-grid">
+                            <div class="legend-info-item">
+                                <span class="info-label">📅 Nacimiento:</span>
+                                <span class="info-value">${leyenda.fechaNacimiento}</span>
+                                ${leyenda.fechaFallecimiento ? `<span class="info-value">- ${leyenda.fechaFallecimiento}</span>` : ''}
+                            </div>
+                            <div class="legend-info-item">
+                                <span class="info-label">📍 Lugar:</span>
+                                <span class="info-value">${leyenda.lugarNacimiento}</span>
+                            </div>
+                            ${leyenda.nombreCompleto ? `
+                            <div class="legend-info-item">
+                                <span class="info-label">👤 Nombre completo:</span>
+                                <span class="info-value">${leyenda.nombreCompleto}</span>
+                            </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="legend-achievements">
+                            <h3 class="achievements-title">🏆 Títulos y Honores</h3>
+                            <ul class="achievements-list">
+                                ${leyenda.titulos.map(titulo => `<li>${titulo}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="legend-logros">
+                            <h3 class="logros-title">✨ Logros Destacados</h3>
+                            <ul class="logros-list">
+                                ${leyenda.logros.map(logro => `<li>${logro}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="legend-video">
+                            <h3 class="video-title">🎬 Video Destacado</h3>
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/${leyenda.videoId}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen
+                                    class="legend-video-iframe">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Animación de aparición
+            const cards = grid.querySelectorAll('.legend-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        }
+
+        function inicializarMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+        }
+
+        function inicializarModoOscuro() {
+            const themeToggle = document.getElementById('themeToggle');
+            const modoGuardado = localStorage.getItem('modoOscuro');
+            const esOscuro = modoGuardado === null ? true : modoGuardado === 'true';
+            
+            if (esOscuro) {
+                document.body.classList.remove('light-mode');
+            } else {
+                document.body.classList.add('light-mode');
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const body = document.body;
+                    const esOscuro = !body.classList.contains('light-mode');
+                    body.classList.toggle('light-mode');
+                    localStorage.setItem('modoOscuro', !esOscuro);
+                    const themeIcon = document.querySelector('.theme-icon');
+                    if (themeIcon) {
+                        themeIcon.textContent = esOscuro ? '☀️' : '🌙';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+
