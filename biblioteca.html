@@ -219,167 +219,6 @@
             color: var(--color-texto-muted-claro);
         }
 
-        /* Modal de Documento */
-        .modal-document {
-            max-width: 1000px;
-            max-height: 95vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-document-header {
-            padding: var(--spacing-lg);
-            border-bottom: 2px solid var(--color-borde);
-            background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-        }
-
-        .document-header-info h2 {
-            font-size: 2rem;
-            color: var(--color-acento);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .document-meta {
-            display: flex;
-            gap: var(--spacing-md);
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-            color: var(--color-texto-muted);
-        }
-
-        .document-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .modal-document-body {
-            flex: 1;
-            padding: var(--spacing-xl);
-            overflow-y: auto;
-            background: var(--color-primario);
-        }
-
-        .document-content {
-            line-height: 1.8;
-            color: var(--color-texto);
-            font-size: 1.05rem;
-        }
-
-        .document-content h1,
-        .document-content h2,
-        .document-content h3 {
-            color: var(--color-acento);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .document-content h1 {
-            font-size: 2rem;
-            border-bottom: 2px solid var(--color-acento);
-            padding-bottom: var(--spacing-xs);
-        }
-
-        .document-content h2 {
-            font-size: 1.5rem;
-        }
-
-        .document-content h3 {
-            font-size: 1.25rem;
-        }
-
-        .document-content p {
-            margin-bottom: var(--spacing-md);
-            text-align: justify;
-        }
-
-        .document-content ul,
-        .document-content ol {
-            margin: var(--spacing-md) 0;
-            padding-left: var(--spacing-lg);
-        }
-
-        .document-content li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .document-content blockquote {
-            border-left: 4px solid var(--color-acento);
-            padding-left: var(--spacing-md);
-            margin: var(--spacing-md) 0;
-            font-style: italic;
-            color: var(--color-texto-muted);
-        }
-
-        .document-description {
-            font-size: 1.1rem;
-            color: var(--color-texto-muted);
-            font-style: italic;
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: rgba(212, 175, 55, 0.1);
-            border-left: 4px solid var(--color-acento);
-            border-radius: 5px;
-        }
-
-        .document-placeholder {
-            text-align: center;
-            padding: var(--spacing-xl);
-            color: var(--color-texto-muted);
-        }
-
-        .modal-document-footer {
-            padding: var(--spacing-md) var(--spacing-lg);
-            border-top: 2px solid var(--color-borde);
-            display: flex;
-            gap: var(--spacing-md);
-            justify-content: flex-end;
-            background: var(--color-primario);
-        }
-
-        .btn {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--color-acento), #f4d03f);
-            color: var(--color-fondo);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--color-texto);
-            border: 2px solid var(--color-borde);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--color-acento);
-            color: var(--color-acento);
-        }
-
-        body.light-mode .modal-document-header {
-            background: linear-gradient(135deg, var(--color-primario-claro), #e5e7eb);
-        }
-
-        body.light-mode .document-content {
-            color: var(--color-texto-claro);
-        }
-
-        body.light-mode .document-meta {
-            color: var(--color-texto-muted-claro);
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .biblioteca-hero h1 {
@@ -550,19 +389,6 @@
         </div>
     </footer>
 
-    <!-- Modal de Lectura de Documento -->
-    <div class="modal" id="documentModal">
-        <div class="modal-content modal-document">
-            <span class="modal-close" id="documentModalClose">&times;</span>
-            <div class="modal-document-header" id="documentHeader"></div>
-            <div class="modal-document-body" id="documentBody"></div>
-            <div class="modal-document-footer">
-                <button class="btn btn-primary" id="downloadBtn">📥 Descargar Documento</button>
-                <button class="btn btn-secondary" id="closeModalBtn">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
     <script src="auth.js"></script>
     <script>
@@ -577,48 +403,7 @@
                 imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
                 año: "2020",
                 paginas: "450",
-                idioma: "Español",
-                contenido: `
-                    <h1>Historia de la Música Popular</h1>
-                    <p class="document-description">Una exploración completa de la música popular desde sus orígenes hasta la actualidad, cubriendo todos los géneros principales y sus influencias culturales.</p>
-                    
-                    <h2>Introducción</h2>
-                    <p>La música popular es una expresión cultural que ha evolucionado a lo largo de siglos, reflejando los cambios sociales, políticos y tecnológicos de cada época. Desde sus raíces en las comunidades rurales hasta su transformación en un fenómeno global, la música popular ha sido siempre el espejo de la sociedad.</p>
-                    
-                    <h2>Los Orígenes</h2>
-                    <p>Los orígenes de la música popular se remontan a las tradiciones folclóricas de diferentes culturas alrededor del mundo. En el siglo XIX, la industrialización y la migración urbana crearon nuevas formas de entretenimiento musical que comenzaron a distanciarse de las tradiciones clásicas.</p>
-                    
-                    <p>El desarrollo de tecnologías como el fonógrafo y la radio en las primeras décadas del siglo XX revolucionaron completamente cómo la música se producía, distribuía y consumía. Esto marcó el inicio de la industria musical moderna.</p>
-                    
-                    <h2>El Siglo XX: Una Revolución Musical</h2>
-                    <h3>La Era del Jazz y el Blues (1900-1940)</h3>
-                    <p>El jazz emergió de las comunidades afroamericanas de Nueva Orleans a principios del siglo XX. Con raíces en el blues, el ragtime y las tradiciones musicales africanas, el jazz se convirtió en la primera forma verdaderamente estadounidense de música popular.</p>
-                    
-                    <p>Artistas como Louis Armstrong, Duke Ellington y Ella Fitzgerald llevaron el jazz a audiencias masivas, estableciendo estándares de interpretación y composición que influenciarían generaciones futuras.</p>
-                    
-                    <h3>El Rock and Roll (1950-1960)</h3>
-                    <p>La década de 1950 vio el nacimiento del rock and roll, una fusión explosiva de rhythm and blues, country y gospel. Elvis Presley, Chuck Berry y Little Richard se convirtieron en las primeras superestrellas de este nuevo género que capturó la imaginación de los jóvenes de todo el mundo.</p>
-                    
-                    <blockquote>"El rock and roll no es solo música, es una actitud, un estilo de vida, una forma de expresar la rebeldía juvenil." - Chuck Berry</blockquote>
-                    
-                    <h3>La Invasión Británica y el Pop (1960-1970)</h3>
-                    <p>Los años 60 trajeron la "Invasión Británica" liderada por The Beatles y The Rolling Stones. Estos grupos transformaron la música popular, introduciendo experimentación sonora, letras más sofisticadas y una producción musical más elaborada.</p>
-                    
-                    <h2>Los Géneros Modernos</h2>
-                    <h3>Hip Hop y Rap</h3>
-                    <p>Emergiendo del Bronx en la década de 1970, el hip hop se convirtió en la voz de las comunidades urbanas marginadas. Desde sus humildes comienzos en block parties, el hip hop ha evolucionado hasta convertirse en uno de los géneros más influyentes a nivel global.</p>
-                    
-                    <h3>Música Electrónica</h3>
-                    <p>El desarrollo de sintetizadores y tecnología de producción digital dio lugar a géneros completamente nuevos como el house, techno, trance y más recientemente, el EDM. La música electrónica ha transformado no solo cómo se produce música, sino también cómo se experimenta en conciertos y festivales.</p>
-                    
-                    <h2>La Era Digital</h2>
-                    <p>El siglo XXI ha sido testigo de cambios fundamentales en la industria musical. El streaming ha reemplazado a la venta de álbumes físicos, y las plataformas digitales han democratizado el acceso tanto a la creación como al consumo de música.</p>
-                    
-                    <p>Artistas independientes ahora pueden alcanzar audiencias globales sin necesidad de grandes sellos discográficos, mientras que los oyentes tienen acceso instantáneo a millones de canciones de todo el mundo.</p>
-                    
-                    <h2>Conclusión</h2>
-                    <p>La música popular continúa evolucionando, adaptándose a nuevos contextos culturales y tecnológicos. Lo que permanece constante es su capacidad para unir personas, expresar emociones y reflejar los tiempos en que vivimos. La historia de la música popular es, en esencia, la historia de la humanidad contada a través del sonido.</p>
-                `
+                idioma: "Español"
             },
             {
                 id: 2,
@@ -640,34 +425,7 @@
                 imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop",
                 año: "2021",
                 paginas: "520",
-                idioma: "Español",
-                contenido: `
-                    <h1>Bob Dylan: La Biografía</h1>
-                    <p class="document-description">Biografía autorizada del legendario cantautor Bob Dylan, desde sus inicios en Minnesota hasta convertirse en Premio Nobel de Literatura.</p>
-                    
-                    <h2>Los Primeros Años</h2>
-                    <p>Robert Allen Zimmerman nació el 24 de mayo de 1941 en Duluth, Minnesota. Creció en la pequeña ciudad de Hibbing, donde desarrolló un temprano interés por la música. Sus influencias incluyeron artistas de blues como Muddy Waters y Hank Williams del country.</p>
-                    
-                    <h2>El Nacimiento de Bob Dylan</h2>
-                    <p>En 1959, Zimmerman se matriculó en la Universidad de Minnesota, pero su verdadera educación tuvo lugar en los clubes de folk de Dinkytown. Fue aquí donde adoptó el nombre artístico "Bob Dylan", inspirado en el poeta Dylan Thomas.</p>
-                    
-                    <h2>El Movimiento a Nueva York</h2>
-                    <p>En enero de 1961, Dylan dejó la universidad y se trasladó a Nueva York, donde esperaba conocer a su ídolo Woody Guthrie, quien estaba hospitalizado. Dylan rápidamente se convirtió en una figura destacada en la escena folk de Greenwich Village.</p>
-                    
-                    <h2>La Era del Folk Revival</h2>
-                    <p>Sus primeros álbumes, "Bob Dylan" (1962) y "The Freewheelin' Bob Dylan" (1963), establecieron su reputación como compositor de canciones de protesta. Temas como "Blowin' in the Wind" y "The Times They Are a-Changin'" se convirtieron en himnos del movimiento de derechos civiles y la contracultura de los años 60.</p>
-                    
-                    <blockquote>"No hay nada como escribir una canción. Es lo que te hace seguir adelante." - Bob Dylan</blockquote>
-                    
-                    <h2>La Revolución Eléctrica</h2>
-                    <p>En 1965, Dylan causó controversia al "volverse eléctrico" en el Newport Folk Festival, acompañado por una banda de rock. Este cambio marcó una evolución artística que alienó a algunos puristas del folk pero abrió nuevos caminos musicales.</p>
-                    
-                    <h2>Premio Nobel de Literatura</h2>
-                    <p>En 2016, Dylan hizo historia al convertirse en el primer músico en recibir el Premio Nobel de Literatura. La Academia Sueca lo honró "por haber creado nuevas expresiones poéticas dentro de la gran tradición de la canción estadounidense".</p>
-                    
-                    <h2>Legado y Influencia</h2>
-                    <p>Con más de 60 años de carrera, Bob Dylan ha publicado más de 40 álbumes de estudio y ha escrito más de 500 canciones. Su influencia se extiende a través de generaciones de músicos, poetas y artistas, y sus letras siguen siendo estudiadas en universidades de todo el mundo.</p>
-                `
+                idioma: "Español"
             },
             {
                 id: 4,
@@ -689,44 +447,7 @@
                 imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop",
                 año: "2022",
                 paginas: "85",
-                idioma: "Español",
-                contenido: `
-                    <h1>Orígenes del Rock and Roll</h1>
-                    <p class="document-description">Documento académico sobre los orígenes del rock and roll en los años 50, su impacto social y evolución cultural.</p>
-                    
-                    <h2>Introducción</h2>
-                    <p>El rock and roll emergió en los Estados Unidos durante la década de 1950 como una síntesis de diversos géneros musicales, incluyendo rhythm and blues, country, gospel y blues. Este nuevo estilo musical no solo transformó la industria del entretenimiento, sino que también reflejó y catalizó cambios sociales significativos en la sociedad estadounidense de posguerra.</p>
-                    
-                    <h2>Antecedentes Musicales</h2>
-                    <h3>Rhythm and Blues</h3>
-                    <p>El rhythm and blues (R&B), desarrollado por artistas afroamericanos en las décadas de 1940 y 1950, proporcionó la base rítmica y estructural del rock and roll. Artistas como Chuck Berry, Little Richard y Fats Domino incorporaron elementos de blues, swing y boogie-woogie en sus interpretaciones.</p>
-                    
-                    <h3>Country y Western</h3>
-                    <p>La música country aportó elementos melódicos y narrativos al rock and roll. Muchos de los primeros intérpretes de rock, como Elvis Presley y Buddy Holly, tenían raíces en la música country y fusionaron estos elementos con el R&B.</p>
-                    
-                    <h2>El Nacimiento del Rock and Roll</h2>
-                    <p>1954-1956 es comúnmente considerado el período de nacimiento del rock and roll. Eventos clave incluyen:</p>
-                    <ul>
-                        <li><strong>1954:</strong> Elvis Presley graba "That's All Right" en Sun Records</li>
-                        <li><strong>1955:</strong> Bill Haley & His Comets alcanzan el número uno con "Rock Around the Clock"</li>
-                        <li><strong>1956:</strong> Chuck Berry lanza "Roll Over Beethoven" y "Johnny B. Goode"</li>
-                    </ul>
-                    
-                    <h2>Impacto Social y Cultural</h2>
-                    <h3>Integración Racial</h3>
-                    <p>El rock and roll fue uno de los primeros géneros musicales que cruzó las barreras raciales en Estados Unidos. Aunque muchos artistas afroamericanos fueron versionados por artistas blancos (un fenómeno conocido como "cover"), el rock and roll también permitió que artistas negros alcanzaran audiencias blancas masivas.</p>
-                    
-                    <h3>Rebeldía Juvenil</h3>
-                    <p>El rock and roll se convirtió en la banda sonora de la rebeldía juvenil de los años 50. Las letras sobre romance, libertad y desafío a la autoridad resonaron profundamente con la generación joven que buscaba expresar su identidad independiente.</p>
-                    
-                    <blockquote>"El rock and roll es música de rebeldía, pero también es música de unión." - Anónimo</blockquote>
-                    
-                    <h2>Expansión y Evolución</h2>
-                    <p>A lo largo de las décadas siguientes, el rock and roll evolucionó en múltiples subgéneros: rockabilly, surf rock, garage rock, punk, metal y muchos otros. Cada variante reflejó las preocupaciones y estéticas de su época.</p>
-                    
-                    <h2>Conclusión</h2>
-                    <p>El rock and roll no fue simplemente un género musical; fue un movimiento cultural que transformó la sociedad estadounidense y, posteriormente, mundial. Sus orígenes en la síntesis de tradiciones musicales diversas reflejan la complejidad y riqueza de la cultura estadounidense, mientras que su impacto social demuestra el poder de la música para unir, dividir y transformar.</p>
-                `
+                idioma: "Español"
             },
             {
                 id: 6,
@@ -737,45 +458,7 @@
                 imagen: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&h=400&fit=crop",
                 año: "2020",
                 paginas: "750",
-                idioma: "Español",
-                contenido: `
-                    <h1>Michael Jackson: El Rey del Pop</h1>
-                    <p class="document-description">Biografía completa de Michael Jackson, desde los Jackson 5 hasta su legado como el artista más exitoso de todos los tiempos.</p>
-                    
-                    <h2>Los Primeros Años</h2>
-                    <p>Michael Joseph Jackson nació el 29 de agosto de 1958 en Gary, Indiana, siendo el séptimo de nueve hijos de la familia Jackson. Desde muy temprana edad, mostró un talento extraordinario para la música y el baile, siendo descubierto por su padre Joe Jackson como un niño prodigio.</p>
-                    
-                    <h2>Jackson 5: Los Inicios</h2>
-                    <p>A la edad de cinco años, Michael ya era el vocalista principal de los Jackson 5, junto con sus hermanos Jackie, Tito, Jermaine y Marlon. El grupo firmó con Motown Records en 1968 y rápidamente alcanzó la fama con éxitos como "I Want You Back", "ABC" y "I'll Be There".</p>
-                    
-                    <h2>Carrera en Solitario</h2>
-                    <h3>Off the Wall (1979)</h3>
-                    <p>Su primer álbum en solitario de éxito masivo, "Off the Wall", estableció a Michael como una estrella independiente. Producido por Quincy Jones, el álbum incluyó éxitos como "Don't Stop 'Til You Get Enough" y "Rock with You".</p>
-                    
-                    <h3>Thriller (1982): El Fenómeno</h3>
-                    <p>"Thriller" se convirtió en el álbum más vendido de todos los tiempos, con más de 66 millones de copias vendidas mundialmente. El álbum incluyó siete singles que alcanzaron el Top 10, incluyendo "Billie Jean", "Beat It" y la canción homónima "Thriller", acompañada de un innovador video musical de 14 minutos dirigido por John Landis.</p>
-                    
-                    <blockquote>"El objetivo de mi vida ha sido entregar al mundo algo que nadie pueda igualar." - Michael Jackson</blockquote>
-                    
-                    <h2>Innovación en Videos Musicales</h2>
-                    <p>Michael Jackson revolucionó el formato del video musical, transformándolo de una simple herramienta promocional en una forma de arte narrativa. Sus videos, especialmente "Thriller" y "Billie Jean", establecieron nuevos estándares de producción y narrativa.</p>
-                    
-                    <h2>El Moonwalk y Sus Movimientos</h2>
-                    <p>Su estilo de baile único, incluido el icónico "moonwalk", combinó elementos de popping, locking y breakdancing, creando un estilo completamente nuevo que influenciaría a generaciones de bailarines.</p>
-                    
-                    <h2>Reconocimientos y Logros</h2>
-                    <ul>
-                        <li>13 premios Grammy</li>
-                        <li>Guinness World Records: "Álbum más vendido de todos los tiempos" (Thriller)</li>
-                        <li>Más de 400 millones de álbumes vendidos mundialmente</li>
-                        <li>Primer artista en ganar el Grammy Legend Award</li>
-                    </ul>
-                    
-                    <h2>Legado</h2>
-                    <p>Michael Jackson falleció el 25 de junio de 2009, pero su legado perdura. Fue un artista que trascendió géneros, razas y culturas, unificando a millones de personas a través de su música. Su influencia se extiende a prácticamente todos los artistas pop contemporáneos, desde Justin Timberlake hasta The Weeknd.</p>
-                    
-                    <p>Conocido como "El Rey del Pop", Michael Jackson no solo fue un músico excepcional, sino también un innovador, un filántropo y un ícono cultural cuyo impacto en la música popular es incomparable.</p>
-                `
+                idioma: "Español"
             },
             {
                 id: 7,
@@ -819,37 +502,7 @@
                 imagen: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop",
                 año: "2021",
                 paginas: "120",
-                idioma: "Español",
-                contenido: `
-                    <h1>Música Latinoamericana</h1>
-                    <p class="document-description">Estudio académico sobre los géneros musicales latinoamericanos, sus características y evolución histórica.</p>
-                    
-                    <h2>Introducción</h2>
-                    <p>La música latinoamericana es un rico tapiz de tradiciones, géneros y estilos que reflejan la diversidad cultural de la región. Desde los ritmos indígenas ancestrales hasta las fusiones modernas, la música latinoamericana ha influido profundamente en la música global.</p>
-                    
-                    <h2>Géneros Tradicionales</h2>
-                    <h3>Salsa</h3>
-                    <p>Originada en el Caribe, especialmente en Cuba y Puerto Rico, la salsa combina elementos de son cubano, jazz y otros ritmos caribeños. Artistas como Celia Cruz, Tito Puente y Marc Anthony han llevado la salsa a audiencias internacionales.</p>
-                    
-                    <h3>Tango</h3>
-                    <p>Nacido en los barrios de Buenos Aires a finales del siglo XIX, el tango es más que un género musical: es una expresión cultural completa que incluye música, danza y poesía. Astor Piazzolla revolucionó el tango en el siglo XX, creando el "tango nuevo".</p>
-                    
-                    <h3>Bossa Nova</h3>
-                    <p>Desarrollada en Brasil en los años 50 y 60, la bossa nova fusiona samba con jazz. João Gilberto, Antônio Carlos Jobim y Astrud Gilberto crearon algunos de los estándares más reconocidos del género, como "The Girl from Ipanema".</p>
-                    
-                    <h2>Géneros Contemporáneos</h2>
-                    <h3>Reggaeton</h3>
-                    <p>Emergido de Puerto Rico en los años 90, el reggaeton combina reggae jamaicano, hip hop y ritmos latinos. Artistas como Daddy Yankee, Don Omar y Bad Bunny han convertido el reggaeton en un fenómeno global.</p>
-                    
-                    <h3>Cumbia</h3>
-                    <p>Originaria de Colombia, la cumbia se ha extendido por toda América Latina, adoptando características locales en cada región. Es uno de los géneros más bailados en festivales y celebraciones latinoamericanas.</p>
-                    
-                    <h2>Influencia Global</h2>
-                    <p>La música latinoamericana ha tenido un impacto significativo en la música global. Desde el "Despacito" de Luis Fonsi que rompió récords de streaming, hasta la incorporación de elementos latinos en el pop mainstream, la influencia latinoamericana es innegable.</p>
-                    
-                    <h2>Conclusión</h2>
-                    <p>La música latinoamericana continúa evolucionando, fusionándose con géneros globales mientras mantiene sus raíces culturales. Esta riqueza y diversidad hacen de la música latinoamericana una de las tradiciones musicales más vibrantes del mundo.</p>
-                `
+                idioma: "Español"
             },
             {
                 id: 11,
@@ -871,37 +524,7 @@
                 imagen: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop",
                 año: "2022",
                 paginas: "480",
-                idioma: "Español",
-                contenido: `
-                    <h1>Freddie Mercury: Una Vida Extraordinaria</h1>
-                    <p class="document-description">Biografía íntima de Freddie Mercury, el legendario vocalista de Queen, su vida y su legado musical.</p>
-                    
-                    <h2>Los Primeros Años</h2>
-                    <p>Farrokh Bulsara nació el 5 de septiembre de 1946 en Zanzíbar, Tanzania. De origen parsi (persa-indi), su familia se trasladó a la India cuando era joven, donde asistió a la escuela St. Peter's en Panchgani. Fue aquí donde comenzó a usar el nombre "Freddie" y descubrió su pasión por la música.</p>
-                    
-                    <h2>La Formación de Queen</h2>
-                    <p>En 1970, después de graduarse en diseño gráfico en el Ealing Art College de Londres, Freddie se unió a la banda Smile, que incluía a Brian May y Roger Taylor. Con la incorporación de John Deacon al bajo, la banda se rebautizó como Queen.</p>
-                    
-                    <h2>El Estilo de Mercury</h2>
-                    <p>Freddie Mercury era conocido por su rango vocal extraordinario (cuatro octavas), su presencia escénica carismática y su capacidad para conectar con las audiencias. Sus actuaciones en vivo eran legendarias, especialmente su interpretación de "Radio Ga Ga" en Live Aid 1985, considerada una de las mejores actuaciones en vivo de todos los tiempos.</p>
-                    
-                    <blockquote>"Soy solo un individuo que intenta ir más allá de la limitación de los prejuicios de la humanidad." - Freddie Mercury</blockquote>
-                    
-                    <h2>Éxitos y Legado</h2>
-                    <p>Queen produjo algunos de los hits más memorables del rock, incluyendo "Bohemian Rhapsody", "We Will Rock You", "Don't Stop Me Now" y "We Are the Champions". Freddie también tuvo una exitosa carrera en solitario con álbumes como "Mr. Bad Guy" y colaboraciones con Montserrat Caballé.</p>
-                    
-                    <h2>Vida Personal y Legado</h2>
-                    <p>Freddie Mercury falleció el 24 de noviembre de 1991 debido a complicaciones relacionadas con el SIDA. Su muerte fue un momento de luto global, pero también ayudó a aumentar la concienciación sobre la enfermedad.</p>
-                    
-                    <p>Su legado perdura no solo en la música de Queen, que sigue siendo popular décadas después de su muerte, sino también en su impacto en la cultura pop. Mercury desafió las normas de género y sexualidad, convirtiéndose en un ícono para la comunidad LGBTQ+ y para todos aquellos que celebran la individualidad.</p>
-                    
-                    <h2>Reconocimientos</h2>
-                    <ul>
-                        <li>Inducido al Salón de la Fama del Rock and Roll (2001, póstumo)</li>
-                        <li>Premio Brit a la Contribución Destacada a la Música (1992, póstumo)</li>
-                        <li>La película biográfica "Bohemian Rhapsody" ganó múltiples premios, incluyendo el Oscar a Mejor Actor para Rami Malek</li>
-                    </ul>
-                `
+                idioma: "Español"
             }
         ];
 
@@ -931,22 +554,6 @@
             inicializarFiltros();
             inicializarMenu();
             inicializarModoOscuro();
-            
-            // Inicializar modal
-            const modal = document.getElementById('documentModal');
-            const closeBtn = document.getElementById('documentModalClose');
-            
-            if (closeBtn) {
-                closeBtn.addEventListener('click', cerrarModal);
-            }
-            
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        cerrarModal();
-                    }
-                });
-            }
         });
 
         function cargarRecursos(filtro = 'all') {
@@ -1014,109 +621,16 @@
 
         function verRecurso(id) {
             const recurso = recursosBiblioteca.find(r => r.id === id);
-            if (!recurso) return;
-
-            const modal = document.getElementById('documentModal');
-            const header = document.getElementById('documentHeader');
-            const body = document.getElementById('documentBody');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const closeBtn = document.getElementById('closeModalBtn');
-
-            // Actualizar header
-            header.innerHTML = `
-                <div class="document-header-info">
-                    <h2 class="document-title">${recurso.titulo}</h2>
-                    <div class="document-meta">
-                        <span><strong>Autor:</strong> ${recurso.autor}</span>
-                        <span><strong>Tipo:</strong> ${tipoIconos[recurso.tipo]} ${tipoNombres[recurso.tipo]}</span>
-                        <span><strong>Año:</strong> ${recurso.año}</span>
-                        <span><strong>Páginas:</strong> ${recurso.paginas}</span>
-                    </div>
-                </div>
-            `;
-
-            // Cargar contenido
-            if (recurso.contenido) {
-                body.innerHTML = `<div class="document-content">${recurso.contenido}</div>`;
-            } else {
-                body.innerHTML = `
-                    <div class="document-content">
-                        <p class="document-description">${recurso.descripcion}</p>
-                        <div class="document-placeholder">
-                            <p>El contenido completo se está cargando...</p>
-                            <p>Este recurso contiene ${recurso.paginas} páginas de información valiosa sobre ${recurso.titulo.toLowerCase()}.</p>
-                            <p>Puedes descargarlo para leerlo completo en tu dispositivo.</p>
-                        </div>
-                    </div>
-                `;
+            if (recurso) {
+                alert(`Abriendo: ${recurso.titulo}\n\nAutor: ${recurso.autor}\nTipo: ${tipoNombres[recurso.tipo]}\nAño: ${recurso.año}\nPáginas: ${recurso.paginas}\n\n${recurso.descripcion}`);
             }
-
-            // Configurar botón de descarga
-            downloadBtn.onclick = () => descargarRecurso(id);
-            closeBtn.onclick = () => cerrarModal();
-
-            // Abrir modal
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
 
         function descargarRecurso(id) {
             const recurso = recursosBiblioteca.find(r => r.id === id);
-            if (!recurso) return;
-
-            // Crear contenido del documento
-            let contenidoTexto = `${recurso.titulo}\n`;
-            contenidoTexto += `${'='.repeat(recurso.titulo.length)}\n\n`;
-            contenidoTexto += `Autor: ${recurso.autor}\n`;
-            contenidoTexto += `Tipo: ${tipoNombres[recurso.tipo]}\n`;
-            contenidoTexto += `Año: ${recurso.año}\n`;
-            contenidoTexto += `Páginas: ${recurso.paginas}\n`;
-            contenidoTexto += `Idioma: ${recurso.idioma}\n\n`;
-            contenidoTexto += `${'='.repeat(50)}\n\n`;
-            contenidoTexto += `DESCRIPCIÓN\n`;
-            contenidoTexto += `${'='.repeat(50)}\n\n`;
-            contenidoTexto += `${recurso.descripcion}\n\n`;
-            
-            if (recurso.contenido) {
-                contenidoTexto += `${'='.repeat(50)}\n\n`;
-                contenidoTexto += `CONTENIDO COMPLETO\n`;
-                contenidoTexto += `${'='.repeat(50)}\n\n`;
-                // Extraer solo texto del HTML si existe
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = recurso.contenido;
-                contenidoTexto += tempDiv.textContent || tempDiv.innerText || '';
-            } else {
-                contenidoTexto += `\n\n${'='.repeat(50)}\n\n`;
-                contenidoTexto += `Este documento contiene ${recurso.paginas} páginas de información detallada.\n`;
-                contenidoTexto += `Para obtener el contenido completo, visita nuestra biblioteca en línea.\n\n`;
+            if (recurso) {
+                alert(`Descargando: ${recurso.titulo}\n\nEsta funcionalidad se implementará próximamente.`);
             }
-
-            // Crear blob y descargar
-            const blob = new Blob([contenidoTexto], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${recurso.titulo.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            // Mostrar confirmación
-            const downloadBtn = document.getElementById('downloadBtn');
-            const originalText = downloadBtn.innerHTML;
-            downloadBtn.innerHTML = '✓ Descargado';
-            downloadBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-            setTimeout(() => {
-                downloadBtn.innerHTML = originalText;
-                downloadBtn.style.background = '';
-            }, 2000);
-        }
-
-        function cerrarModal() {
-            const modal = document.getElementById('documentModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
         }
 
         function inicializarMenu() {

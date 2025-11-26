@@ -158,51 +158,12 @@
     </style>
 </head>
 <body>
-    <!-- Fondo Musical Animado -->
-    <div class="musical-background">
-        <div class="musical-waves">
-            <div class="wave wave-1"></div>
-            <div class="wave wave-2"></div>
-            <div class="wave wave-3"></div>
-            <div class="wave wave-4"></div>
-        </div>
-        <div class="musical-notes">
-            <div class="note note-1">♪</div>
-            <div class="note note-2">♫</div>
-            <div class="note note-3">♬</div>
-            <div class="note note-4">♩</div>
-            <div class="note note-5">♭</div>
-            <div class="note note-6">♯</div>
-            <div class="note note-7">♪</div>
-            <div class="note note-8">♫</div>
-        </div>
-        <div class="audio-visualizer">
-            <div class="bar bar-1"></div>
-            <div class="bar bar-2"></div>
-            <div class="bar bar-3"></div>
-            <div class="bar bar-4"></div>
-            <div class="bar bar-5"></div>
-            <div class="bar bar-6"></div>
-            <div class="bar bar-7"></div>
-            <div class="bar bar-8"></div>
-            <div class="bar bar-9"></div>
-            <div class="bar bar-10"></div>
-        </div>
-        <div class="musical-pattern">
-            <div class="pattern-line line-1"></div>
-            <div class="pattern-line line-2"></div>
-            <div class="pattern-line line-3"></div>
-            <div class="pattern-line line-4"></div>
-            <div class="pattern-line line-5"></div>
-        </div>
-    </div>
-    
     <!-- Barra de Navegación -->
     <header class="header" id="header">
         <nav class="nav">
             <div class="nav-logo">
-                <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
-                    <img src="logo.svg" alt="Meloopedia" class="logo-image">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-text">Meloopedia</span>
                 </a>
             </div>
             <ul class="nav-menu" id="navMenu">
@@ -212,23 +173,18 @@
                 <li><a href="mapa.html" class="nav-link">Mapa</a></li>
                 <li><a href="educacion.html" class="nav-link">Educación</a></li>
                 <li><a href="emergentes.html" class="nav-link">Emergentes</a></li>
-                <li><a href="leyendas.html" class="nav-link">Leyendas</a></li>
-                <li><a href="biblioteca.html" class="nav-link">Biblioteca</a></li>
                 <li><a href="buscar.html" class="nav-link">Buscar</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="login.html" class="btn-login" id="btnLogin">
-                    <span class="btn-login-icon">🔐</span>
-                    <span class="btn-login-text">Iniciar Sesión</span>
-                </a>
-                <div class="user-profile" id="userProfile" style="display: none;">
-                    <span class="profile-icon">👤</span>
-                    <span class="profile-name" id="profileName"></span>
-                    <button class="btn-logout" id="btnLogout" title="Cerrar sesión">✕</button>
-                </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
                     <span class="theme-icon">🌙</span>
                 </button>
+                <div class="user-profile" id="userProfile">
+                    <span class="profile-icon">👤</span>
+                    <span class="xp-bar">
+                        <span class="xp-fill" id="xpFill"></span>
+                    </span>
+                </div>
                 <button class="menu-toggle" id="menuToggle" aria-label="Menú">
                     <span></span>
                     <span></span>
@@ -309,9 +265,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="logo.svg" alt="Meloopedia" class="logo-image-footer">
-                    </div>
+                    <h3>Meloopedia</h3>
                     <p>La enciclopedia musical más completa del mundo. Descubre artistas, géneros y culturas musicales.</p>
                 </div>
                 <div class="footer-section">
@@ -423,9 +377,7 @@
                         const artista = resultado.data;
                         return `
                             <div class="artist-card" onclick="abrirModalArtista(${artista.id})">
-                                <div class="artist-image">
-                                    <img src="${artista.imagen || 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces'}" alt="${artista.nombre}" onerror="this.src='https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop&crop=faces';">
-                                </div>
+                                <div class="artist-image">${artista.bandera}</div>
                                 <span class="artist-flag">${artista.bandera}</span>
                                 <div class="artist-info">
                                     <h3 class="artist-name">${artista.nombre}</h3>
@@ -462,6 +414,5 @@
 
         window.buscarSugerencia = buscarSugerencia;
     </script>
-    <script src="auth.js"></script>
 </body>
 </html>
